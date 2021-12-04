@@ -1,0 +1,16 @@
+@use '../variables';
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+
+  &__list {
+    display: flex;
+  }
+}
+
+.fa-cog,
+.fa-clock,
+.fa-user-friends {
+  font-size: 70px;
+}

@@ -1,3 +1,5 @@
-h1 {
-  color: red;
-}
+@use './normalize';
+@use './variables';
+@use './fonts';
+@use './settings';
+@use './components/navigation';

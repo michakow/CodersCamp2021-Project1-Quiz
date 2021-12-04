@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,8 +8,121 @@
     <title>Quizownia</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <div id="app"></div>
-    <script src="app/index.js"></script>
+    <nav class="navigation">
+      <a href="" class="navigation__logo">
+        <img
+          src="/src/images/quizownia-logo.png"
+          alt="logo"
+          class="navigation__img"
+        />
+      </a>
+      <div class="navigation__menu">
+        <ul class="navigation__list">
+          <li class="navigation__item">
+            <a href="#" class="navigation__link far fa-clock"></a>
+          </li>
+          <li class="navigation__item">
+            <a href="#" class="navigation__link fas fa-user-friends"></a>
+          </li>
+          <li class="navigation__item">
+            <a href="#" class="navigation__link fas fa-cog"></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="category">
+      <div class="container">
+        <div class="category__list">
+          <div class="category__card">
+            <img
+              src="/src/images/logo.png"
+              alt="category"
+              class="category_image"
+            />
+            <h2 class="category__name">Category</h2>
+          </div>
+          <div class="category__card">
+            <img
+              src="/src/images/logo.png"
+              alt="category"
+              class="category_image"
+            />
+            <h2 class="category__name">Category</h2>
+          </div>
+          <div class="category__card">
+            <img
+              src="/src/images/logo.png"
+              alt="category"
+              class="category_image"
+            />
+            <h2 class="category__name">Category</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="game">
+      <div class="container">
+        <button class="game__button game__button--start-quiz">
+          Start Quiz
+        </button>
+        <button class="game__button game__button--scores">Scores</button>
+        <span class="game__questions-quantity"
+          >Total questions for Mythology: 245</span
+        >
+      </div>
+    </section>
+
+    <section class="questions">
+      <div class="container">
+        <div class="questions__question">
+          Which Norse God has a horse named Sleipnir?
+        </div>
+        <button class="questions__button">Thor</button>
+        <button class="questions__button">Thor</button>
+        <button class="questions__button">Thor</button>
+        <button class="questions__button">Thor</button>
+      </div>
+    </section>
+
+    <section class="finish">
+      <div class="container">
+        <div class="finish__result">
+          <span>It's over! Thanks for game :)</span>
+        </div>
+        <div class="finish__score-group">
+          <h3>Your Score</h3>
+          <span class="finish__score">7/10</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="score-dashboard">
+      <div class="container">
+        <p class="score-dashboard__title">Score dashboard for Mythology</p>
+        <div class="score-dashboard__group">
+          <ul class="score-dashboard__player-score-list">
+            <li class="score-dashboard__player-score">
+              <span class="score-dashboard__game-title">game1</span>
+              <span class="score-dashboard__score">2/10</span>
+            </li>
+            <li class="score-dashboard__player-score">
+              <span class="score-dashboard__game-title">game2</span>
+              <span class="score-dashboard__score">2/10</span>
+            </li>
+            <li class="score-dashboard__player-score">
+              <span class="score-dashboard__game-title">game3</span>
+              <span class="score-dashboard__score">2/10</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <script
+      src="https://kit.fontawesome.com/e45387daaf.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="app/index.js" type="module"></script>
   </body>
 </html>
