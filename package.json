@@ -3,30 +3,35 @@
   "version": "0.1.0",
   "description": "",
   "private": true,
+  "engines": {
+    "node": "^16",
+    "yarn": "please-use-npm"
+  },
   "scripts": {
     "build": "parcel build src/index.html --public-url ./",
     "start": "parcel -p 8080 src/index.html",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage"
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/michakow/CodersCamp2021-Project1-Quiz.git"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/michakow/CodersCamp2021-Project1-Quiz/issues"
-  },
   "homepage": "https://github.com/michakow/CodersCamp2021-Project1-Quiz#readme",
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/preset-env": "^7.16.4",
     "@parcel/transformer-sass": "^2.0.1",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest": "^25.3.0",
+    "jest": "^27.4.3",
     "parcel": "^2.0.1",
     "prettier": "^2.5.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "collectCoverageFrom": [
+      "./src/**"
+    ]
   }
 }
