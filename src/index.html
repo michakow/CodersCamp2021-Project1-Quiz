@@ -142,10 +142,8 @@
 
     <section class="game">
       <div class="container">
-        <button class="game__button game__button--start-quiz">
-          Start Quiz
-        </button>
-        <button class="game__button game__button--scores">Scores</button>
+        <button class="button game__button--start-quiz">Start Quiz</button>
+        <button class="button game__button--scores">Scores</button>
         <span class="game__questions-quantity"
           >Total questions for Mythology: 245</span
         >
@@ -154,13 +152,19 @@
 
     <section class="questions">
       <div class="container">
-        <div class="questions__question">
-          Which Norse God has a horse named Sleipnir?
+        <div class="questions__inner">
+          <div class="questions__question">
+            Which Norse God has a horse named Sleipnir?
+          </div>
+          <button class="button questions__answer">Thor</button>
+          <button class="button questions__answer questions__answer--wrong">
+            Thor
+          </button>
+          <button class="button questions__answer questions__answer--correct">
+            Thor
+          </button>
+          <button class="button questions__answer">Thor</button>
         </div>
-        <button class="questions__button">Thor</button>
-        <button class="questions__button">Thor</button>
-        <button class="questions__button">Thor</button>
-        <button class="questions__button">Thor</button>
       </div>
     </section>
 
