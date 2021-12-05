@@ -5,8 +5,8 @@ export const getCategories = async () => {
     const data = await res.json();
     sessionStorage.setItem('categories', JSON.stringify(data.trivia_categories));
     return data;
-  } catch {
-    console.error(Error);
+  } catch(error) {
+    console.error(error);
   }
 };
 
@@ -23,8 +23,8 @@ export const getQuiz = async (categoryID) => {
     if(!res.ok) throw new Error(res.statusText);
     const data = await res.json();
     return data;
-  } catch {
-    console.error(Error);
+  } catch(error) {
+    console.error(error);
   }
 };
 
