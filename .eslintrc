@@ -7,5 +7,9 @@
   "extends": ["eslint:recommended", "plugin:jest/recommended", "prettier"],
   "rules": {
     "semi": ["error", "always"]
+  },
+  "parserOptions": {
+    "sourceType": "module"
   }
+
 }
