@@ -1,0 +1,42 @@
+.category {
+  padding-top: 103px;
+  padding-bottom: 50px;
+
+  &__container {
+    max-width: 1444px;
+  }
+
+  &__list {
+    display: grid;
+    gap: 96px;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    transition: all 0.2s;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+}
+
+.card {
+  max-width: 200px;
+
+  &__image {
+    max-width: 200px;
+    margin-bottom: 13px;
+    border-radius: 25px;
+  }
+
+  &__name {
+    font-size: 25px;
+    text-align: center;
+  }
+}

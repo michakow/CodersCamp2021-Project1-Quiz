@@ -3,9 +3,29 @@
 .navigation {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-left: 89px;
 
   &__list {
     display: flex;
+  }
+
+  &__menu {
+    max-width: 700px;
+    padding-top: 24px;
+    padding-bottom: 23px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    background-color: variables.$blue;
+  }
+
+  &__list {
+    margin-left: 78px;
+    margin-right: 241px;
+  }
+
+  &__item:not(:last-child) {
+    margin-right: 56px;
   }
 }
 
@@ -13,4 +33,10 @@
 .fa-clock,
 .fa-user-friends {
   font-size: 70px;
+  color: black;
+  transition: all 0.3s;
+
+  &:hover {
+    color: variables.$text-color;
+  }
 }

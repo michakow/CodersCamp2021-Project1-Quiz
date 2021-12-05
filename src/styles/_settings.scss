@@ -11,6 +11,14 @@ body {
   min-height: 100vh;
   font-family: Segoe UI, sans-serif;
   background-color: variables.$background-white;
+  color: variables.$text-color;
+}
+
+h1,
+h2,
+p,
+ul {
+  margin: 0;
 }
 
 img {
