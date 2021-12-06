@@ -40,3 +40,49 @@
     }
   }
 }
+
+@media (max-width: 1300px) {
+  .questions {
+    &__answer {
+      max-width: 80%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .questions {
+    &__inner {
+      gap: 40px;
+    }
+
+    &__question,
+    &__answer {
+      font-size: 35px;
+    }
+
+    &__answer {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .questions {
+    &__question {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    &__inner {
+      gap: 20px;
+    }
+
+    &__question {
+      font-size: 25px;
+    }
+
+    &__answer {
+      font-size: 20px;
+    }
+  }
+}

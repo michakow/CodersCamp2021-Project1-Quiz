@@ -42,6 +42,7 @@
   &__player-score {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 17px 62px 17px;
     margin-bottom: 22px;
     border-radius: 25px;
@@ -52,5 +53,63 @@
   &__score {
     font-size: 46px;
     color: variables.$question-color;
+  }
+}
+
+@media (max-width: 768px) {
+  .score-dashboard {
+    &__game-title,
+    &__title,
+    &__score {
+      font-size: 35px;
+    }
+
+    &__game-title {
+      margin-right: 10px;
+    }
+  }
+}
+
+@media (max-width: 676px) {
+  .score-dashboard {
+    &__title {
+      padding-left: 20px;
+      padding-right: 20px;
+      font-size: 30px;
+    }
+
+    &__game-title,
+    &__score {
+      font-size: 25px;
+    }
+
+    &__player-score {
+      padding: 30px;
+    }
+
+    &__game-title {
+      margin-right: 10px;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .score-dashboard {
+    &__title {
+      font-size: 25px;
+    }
+
+    &__player-score-list {
+      padding: 20px;
+    }
+
+    &__game-title,
+    &__score {
+      font-size: 20px;
+    }
+
+    &__player-score {
+      padding: 15px;
+    }
   }
 }

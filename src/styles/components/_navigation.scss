@@ -27,6 +27,13 @@
   &__item:not(:last-child) {
     margin-right: 56px;
   }
+
+  &__burger {
+    display: none;
+    width: 50px;
+    height: 25px;
+    background-color: transparent;
+  }
 }
 
 .fa-cog,
@@ -38,5 +45,59 @@
 
   &:hover {
     color: variables.$text-color;
+  }
+}
+
+@media (max-width: 1200px) {
+  .navigation {
+    &__menu {
+      padding-top: 30px;
+    }
+
+    &__list {
+      margin-right: 100px;
+    }
+  }
+
+  .fa-cog,
+  .fa-clock,
+  .fa-user-friends {
+    font-size: 65px;
+  }
+}
+
+@media (max-width: 992px) {
+  .navigation {
+    &__img {
+      height: 90px;
+    }
+
+    &__menu {
+      padding-top: 25px;
+    }
+
+    &__list {
+      margin-right: 50px;
+    }
+  }
+
+  .fa-cog,
+  .fa-clock,
+  .fa-user-friends {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 776px) {
+  .navigation {
+    padding-right: 30px;
+
+    &__menu {
+      display: none;
+    }
+
+    &__burger {
+      display: block;
+    }
   }
 }
