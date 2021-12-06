@@ -1,29 +1,32 @@
 export const getCategories = async () => {
-  try{
+  try {
     const res = await fetch(`https://opentdb.com/api_category.php`);
-    if(!res.ok) throw new Error(res.statusText);
+    if (!res.ok) throw new Error(res.statusText);
     const data = await res.json();
-    sessionStorage.setItem('categories', JSON.stringify(data.trivia_categories));
+    sessionStorage.setItem(
+      'categories',
+      JSON.stringify(data.trivia_categories),
+    );
     return data;
-  } catch(error) {
+  } catch (error) {
     console.error(error);
   }
 };
 
 export const getQuiz = async (categoryID) => {
-  try{
+  try {
     let path;
-    if(categoryID === 999){
+    if (categoryID === 999) {
       path = 'https://opentdb.com/api.php?amount=10';
     } else {
       path = `https://opentdb.com/api.php?amount=10&category=${categoryID}`;
     }
     const res = await fetch(path);
 
-    if(!res.ok) throw new Error(res.statusText);
+    if (!res.ok) throw new Error(res.statusText);
     const data = await res.json();
     return data;
-  } catch(error) {
+  } catch (error) {
     console.error(error);
   }
 };
