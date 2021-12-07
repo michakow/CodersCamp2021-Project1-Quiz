@@ -1,0 +1,40 @@
+@use '../variables';
+
+.finish {
+    padding-top: 313px;
+    padding-bottom: 268px;
+
+    &__result {
+        width: 100%;
+        padding-top: 29px;
+        padding-bottom: 29px;
+        text-align: center;
+        font-size: 45px;
+        border-radius: 25px;
+        color: variables.$question-color;
+        background-color: variables.$question;
+        box-shadow: 0px 3px 10px black;
+    }
+
+    &__score-group {
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        padding-top: 180px;
+    }
+
+    &__score-group > h3,span {
+        width: 294px;
+        color: #434343;
+        font-family: "Segoe UI";
+        font-size: 46px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    &__score {
+        text-align: center;
+        padding-top: 12px;
+    }
+}

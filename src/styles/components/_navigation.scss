@@ -1,0 +1,103 @@
+@use '../variables';
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 89px;
+
+  &__list {
+    display: flex;
+  }
+
+  &__menu {
+    max-width: 700px;
+    padding-top: 24px;
+    padding-bottom: 23px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    background-color: variables.$blue;
+  }
+
+  &__list {
+    margin-left: 78px;
+    margin-right: 241px;
+  }
+
+  &__item:not(:last-child) {
+    margin-right: 56px;
+  }
+
+  &__burger {
+    display: none;
+    width: 50px;
+    height: 25px;
+    background-color: transparent;
+  }
+}
+
+.fa-cog,
+.fa-clock,
+.fa-user-friends {
+  font-size: 70px;
+  color: black;
+  transition: all 0.3s;
+
+  &:hover {
+    color: variables.$text-color;
+  }
+}
+
+@media (max-width: 1200px) {
+  .navigation {
+    &__menu {
+      padding-top: 30px;
+    }
+
+    &__list {
+      margin-right: 100px;
+    }
+  }
+
+  .fa-cog,
+  .fa-clock,
+  .fa-user-friends {
+    font-size: 65px;
+  }
+}
+
+@media (max-width: 992px) {
+  .navigation {
+    &__img {
+      height: 90px;
+    }
+
+    &__menu {
+      padding-top: 25px;
+    }
+
+    &__list {
+      margin-right: 50px;
+    }
+  }
+
+  .fa-cog,
+  .fa-clock,
+  .fa-user-friends {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 776px) {
+  .navigation {
+    padding-right: 30px;
+
+    &__menu {
+      display: none;
+    }
+
+    &__burger {
+      display: block;
+    }
+  }
+}

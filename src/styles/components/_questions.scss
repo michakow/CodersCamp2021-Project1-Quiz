@@ -1,0 +1,88 @@
+@use '../variables';
+
+.questions {
+  padding-top: 167px;
+  padding-bottom: 188px;
+
+  &__question {
+    width: 100%;
+    padding-top: 29px;
+    padding-bottom: 29px;
+    text-align: center;
+    font-size: 45px;
+    border-radius: 25px;
+    color: variables.$question-color;
+    background-color: variables.$question;
+    box-shadow: 0px 3px 10px black;
+  }
+
+  &__inner {
+    display: flex;
+    gap: 93px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__answer {
+    transition: all 0.2s;
+
+    &--wrong {
+      background-color: variables.$wrong-answer;
+    }
+
+    &--correct {
+      background-color: variables.$correct-answer;
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .questions {
+    &__answer {
+      max-width: 80%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .questions {
+    &__inner {
+      gap: 40px;
+    }
+
+    &__question,
+    &__answer {
+      font-size: 35px;
+    }
+
+    &__answer {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .questions {
+    &__question {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    &__inner {
+      gap: 20px;
+    }
+
+    &__question {
+      font-size: 25px;
+    }
+
+    &__answer {
+      font-size: 20px;
+    }
+  }
+}

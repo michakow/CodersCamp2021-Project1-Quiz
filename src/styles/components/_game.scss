@@ -1,0 +1,23 @@
+@use '../variables';
+
+.game {
+    display: flex; 
+    flex-direction:column;
+    align-items: center;
+    margin-bottom: 340px;
+    margin-top: 332px;
+
+    &__questions-quantity {
+    font-size: 30px;  
+    }
+}
+
+.game__button--start-quiz {
+    margin-bottom: 68px;
+    background-color: variables.$green;
+}
+
+.game__button--scores { 
+    margin-bottom: 68px;
+    background-color: variables.$orange;
+}
