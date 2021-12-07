@@ -3,8 +3,13 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["eslint:recommended", "prettier"],
+  "plugins": ["jest"],
+  "extends": ["eslint:recommended", "plugin:jest/recommended", "prettier"],
   "rules": {
     "semi": ["error", "always"]
+  },
+  "parserOptions": {
+    "sourceType": "module"
   }
+
 }
