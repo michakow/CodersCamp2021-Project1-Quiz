@@ -13,7 +13,7 @@ export const getCategories = async () => {
   }
 };
 
-export const getQuiz = async (categoryID) => {
+export const getQuestions = async (categoryID) => {
   try {
     let path;
     if (categoryID === 999) {
@@ -25,6 +25,10 @@ export const getQuiz = async (categoryID) => {
 
     if (!res.ok) throw new Error(res.statusText);
     const data = await res.json();
+    sessionStorage.setItem(
+      'questions',
+      JSON.stringify(data.results),
+    );
     return data;
   } catch (error) {
     console.error(error);
