@@ -34,10 +34,6 @@
     &--correct {
       background-color: variables.$correct-answer;
     }
-
-    &:hover {
-      transform: translateY(-5px);
-    }
   }
 }
 

@@ -1,23 +1,39 @@
 @use '../variables';
 
 .game {
-    display: flex; 
-    flex-direction:column;
+  margin-bottom: 340px;
+  margin-top: 332px;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 340px;
-    margin-top: 332px;
+    max-width: 560px;
+  }
 
-    &__questions-quantity {
-    font-size: 30px;  
+  &__questions-quantity {
+    margin-bottom: 40px;
+    font-size: 30px;
+  }
+
+  &__button {
+    &--start-quiz,
+    &--scores {
+      margin-bottom: 68px;
     }
-}
 
-.game__button--start-quiz {
-    margin-bottom: 68px;
-    background-color: variables.$green;
-}
+    &--start-quiz {
+      background-color: variables.$green;
+    }
 
-.game__button--scores { 
-    margin-bottom: 68px;
-    background-color: variables.$orange;
+    &--scores {
+      background-color: variables.$orange;
+    }
+
+    &--back {
+      padding: 10px;
+      font-size: 40px;
+      width: 90%;
+    }
+  }
 }
