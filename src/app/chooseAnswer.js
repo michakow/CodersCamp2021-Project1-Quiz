@@ -2,6 +2,7 @@ import { renderQuestion } from './startQuiz.js';
 import { renderScore } from './renderScore';
 import { saveAnswersToLocalStorage } from './saveAnswersToLocalStorage';
 import { decodeHtmlCharCodes } from './tools.js';
+import { saveDataToSessionStorage } from './tools.js';
 
 export default chooseAnswer = () => {
   const questions = document.querySelector('.questions__inner');
@@ -10,6 +11,7 @@ export default chooseAnswer = () => {
 
   const nextQuestion = () => {
     questionId++;
+    saveDataToSessionStorage('questionId', questionId);
 
     if (questionId < sessionStorage.getItem('questions-amount')) {
       setTimeout(() => {

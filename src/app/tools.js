@@ -4,3 +4,7 @@ export const decodeHtmlCharCodes = (str) =>
   str.replace(/(&#(\d+);)/g, (match, capture, charCode) =>
     String.fromCharCode(charCode),
   );
+
+export const saveDataToSessionStorage = (key, value) => {
+  sessionStorage.setItem(key, value);
+};
