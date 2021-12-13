@@ -19,7 +19,6 @@ export const addStartClickHandler = () => {
     'game__button--start-quiz',
   )[0];
 
-  sessionStorage.clear();
   startButton.addEventListener('click', onClick, false);
 };
 
