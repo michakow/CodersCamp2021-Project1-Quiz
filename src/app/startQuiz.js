@@ -19,7 +19,6 @@ export const addStartClickHandler = () => {
   )[0];
 
   sessionStorage.clear();
-  localStorage.clear('answers');
   startButton.addEventListener('click', onClick, false);
 };
 
