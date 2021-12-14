@@ -21,11 +21,11 @@
     gap: 93px;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    // align-items: center;
   }
 
   &__answer {
-    transition: all 0.2s;
+    transition: all 1s;
 
     &--wrong {
       background-color: variables.$wrong-answer;
