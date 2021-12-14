@@ -1,4 +1,4 @@
-import { renderScore } from './renderScore';
+import { finishQuiz } from './finishQuiz.js';
 
 export const startTimer = () => {
   const timer = document.querySelector('.questions__timer');
@@ -23,7 +23,7 @@ export const startTimer = () => {
 
         timer.style.display = 'none';
         questions.style.display = 'none';
-        renderScore();
+        finishQuiz();
       } else if (questionId === sessionStorage.getItem('questions-amount')) {
         clearInterval(interval);
         timer.style.display = 'none';
