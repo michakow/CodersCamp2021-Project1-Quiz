@@ -1,6 +1,6 @@
-import { getCategories, getQuestions } from './getData.js';
-import { addStartClickHandler } from './startQuiz.js';
-
+// import { finishQuiz } from './finishQuiz.js';
+import { getCategories } from './getData.js';
+import {addStartClickHandler} from './startQuiz.js';
 // Here goes logic:
 const categories = sessionStorage.getItem('categories')
   ? JSON.parse(sessionStorage.getItem('categories'))
@@ -8,3 +8,5 @@ const categories = sessionStorage.getItem('categories')
 console.log(categories);
 
 addStartClickHandler();
+
+// finishQuiz('darek', 6, 'music');
