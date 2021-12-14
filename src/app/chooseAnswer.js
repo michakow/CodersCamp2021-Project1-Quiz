@@ -1,5 +1,5 @@
 import { renderQuestion } from './startQuiz.js';
-import { renderScore } from './renderScore';
+import { finishQuiz } from './finishQuiz.js';
 import { saveAnswersToLocalStorage } from './saveAnswersToLocalStorage';
 import { decodeHtmlCharCodes } from './tools.js';
 import { saveDataToSessionStorage } from './tools.js';
@@ -20,7 +20,7 @@ export default chooseAnswer = () => {
     } else {
       setTimeout(() => {
         questions.style.display = 'none';
-        renderScore();
+        finishQuiz();
       }, 1000);
     }
   };
