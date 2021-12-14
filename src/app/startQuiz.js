@@ -1,9 +1,7 @@
 import { getQuestions } from './getData.js';
+import { startTimer } from './timer.js';
+import { saveDataToSessionStorage } from './tools.js';
 import chooseAnswer from './chooseAnswer.js';
-
-const saveDataToSessionStorage = (key, value) => {
-  sessionStorage.setItem(key, value);
-};
 
 const onClick = async () => {
   const userName = document.querySelector('.game__user--name').value;
@@ -11,6 +9,7 @@ const onClick = async () => {
   await getQuestions(12);
   renderQuestion(0);
 
+  startTimer();
   saveDataToSessionStorage('userName', userName);
 };
 

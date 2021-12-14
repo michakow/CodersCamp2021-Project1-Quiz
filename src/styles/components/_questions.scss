@@ -21,7 +21,6 @@
     gap: 93px;
     flex-wrap: wrap;
     justify-content: center;
-    // align-items: center;
   }
 
   &__answer {
@@ -34,6 +33,12 @@
     &--correct {
       background-color: variables.$correct-answer;
     }
+  }
+
+  &__timer {
+    text-align: right;
+    font-size: 20px;
+    margin-bottom: 15px;
   }
 }
 
