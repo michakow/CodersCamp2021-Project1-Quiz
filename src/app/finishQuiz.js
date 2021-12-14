@@ -5,7 +5,7 @@ export const finishQuiz = (player, score, category) => {
 
   //CreateElements
   const finishContainer = document.querySelector('.finish').children[0];
-  
+
   const finishHeading = document.createElement('div');
   finishHeading.className = 'finish__result';
 
@@ -59,18 +59,25 @@ export const finishQuiz = (player, score, category) => {
 
   //LocalStorage
   const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
-  if(leaderboard.length && leaderboard.find(element => element.categoryName === categoryName)){
-    leaderboard.find(element => element.categoryName === categoryName).players.push({
-      name: playerName,
-      score: playerScore
-    });
+  if (
+    leaderboard.length &&
+    leaderboard.find((element) => element.categoryName === categoryName)
+  ) {
+    leaderboard
+      .find((element) => element.categoryName === categoryName)
+      .players.push({
+        name: playerName,
+        score: playerScore,
+      });
   } else {
     leaderboard.push({
       categoryName,
-      players: [{
-        name: playerName,
-        score: playerScore
-      }]
+      players: [
+        {
+          name: playerName,
+          score: playerScore,
+        },
+      ],
     });
   }
 
