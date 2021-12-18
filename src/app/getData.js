@@ -25,11 +25,11 @@ export const getQuestions = async (categoryID) => {
 
     if (!res.ok) throw new Error(res.statusText);
     const data = await res.json();
-    sessionStorage.setItem(
-      'questions',
-      JSON.stringify(data.results),
-    );
-    return data;
+    // sessionStorage.setItem(
+    //   'questions',
+    //   JSON.stringify(data.results),
+    // );
+    return data.results;
   } catch (error) {
     console.error(error);
   }
