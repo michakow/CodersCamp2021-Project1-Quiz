@@ -1,8 +1,8 @@
-import { startQuiz } from './App.js';
+import { startApp } from './app.js';
 import { getCategories } from './getData.js';
 
 window.onload = () => {
-  startQuiz();
+  startApp();
 
   // Here goes logic:
   const categories = sessionStorage.getItem('categories')
