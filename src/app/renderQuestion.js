@@ -1,25 +1,15 @@
-import { decodeHtmlCharCodes } from './tools.js';
+import { decodeHtmlCharCodes, shuffle } from './tools.js';
 
-export const renderQuestion = (question, questionId, questionLength) => {
+export const renderQuestion = (questionId, question, questionLength) => {
   const questionsInner = document.getElementsByClassName('questions__inner')[0];
 
   const answers = [...question.incorrect_answers, question.correct_answer];
-
-  const shuffle = ([...arr]) => {
-    let m = arr.length;
-    while (m) {
-      const i = Math.floor(Math.random() * m--);
-      [arr[m], arr[i]] = [arr[i], arr[m]];
-    }
-    return arr;
-  };
-
-  const newAnswers = shuffle(answers);
+  const shuffledAnswers = shuffle(answers);
 
   questionsInner.innerHTML = `
     <h3 class="questions__question">
     ${questionId + 1}/${questionLength}. ${question.question}</h3>
-    ${newAnswers
+    ${shuffledAnswers
       .map((answer) => {
         return `<button class="button questions__answer">${answer}</button>`;
       })
@@ -27,7 +17,6 @@ export const renderQuestion = (question, questionId, questionLength) => {
     `;
 
   const answerButtons = document.querySelectorAll('.questions__answer');
-  console.log(answerButtons);
 
   const checkAnswer = (answer) =>
     answer === decodeHtmlCharCodes(question.correct_answer);
@@ -42,37 +31,38 @@ export const renderQuestion = (question, questionId, questionLength) => {
     });
   };
 
-  const handleUserAnswer = (event) => {
-    const { target } = event;
-    console.log(target);
+  return new Promise((answer) => {
+    const handleUserAnswer = (event) => {
+      const { target } = event;
 
-    if (checkAnswer(target.textContent)) {
-      target.classList.add('questions__answer--correct');
+      if (checkAnswer(target.textContent)) {
+        target.classList.add('questions__answer--correct');
 
-      console.log('correct answer');
-    } else {
-      target.classList.add('questions__answer--wrong');
+        setTimeout(() => {
+          answer(true);
+        }, 1000);
+        console.log('correct answer');
+      } else {
+        target.classList.add('questions__answer--wrong');
 
-      //todo showCorrectAnswer;
-      console.log('incorrect answer');
-    }
+        showCorrectAnswer();
+        console.log('incorrect answer');
+        setTimeout(() => {
+          answer(false);
+        }, 1000);
+      }
 
-    removeListeners();
-    showCorrectAnswer();
+      removeListeners();
+    };
 
-    // setTimeout(() => {
-    //   nextQuestion();
-    // }, 1000);
-  };
-
-  answerButtons.forEach((button) => {
-    console.log(button);
-    button.addEventListener('click', handleUserAnswer);
-  });
-
-  const removeListeners = () => {
     answerButtons.forEach((button) => {
-      button.removeEventListener('click', handleUserAnswer);
+      button.addEventListener('click', handleUserAnswer);
     });
-  };
+
+    const removeListeners = () => {
+      answerButtons.forEach((button) => {
+        button.removeEventListener('click', handleUserAnswer);
+      });
+    };
+  });
 };

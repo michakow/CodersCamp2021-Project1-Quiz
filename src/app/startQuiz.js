@@ -1,16 +1,14 @@
 import { renderQuestion } from './renderQuestion';
 
-export const startQuiz = async (questionLists) => {
+export const startQuiz = async (questionList) => {
   let points = 0;
   const questionLength = questionLists.length;
 
-  questionLists.forEach(async (question, id) => {
-    const answer = await renderQuestion(question, id, questionLength);
+  //TODO startTimer();
+  for (let [id, question] of questionList.entries()) {
+    const answer = await renderQuestion(id, question, questionLength);
     if (answer) points++;
-  });
-  // renderQuestion(questionLists[0], 0, 10);
+  }
 
-  // wyrenderowanie finishQuiz
-
-  // startTimer(questionsAmount);
+  //TODO render finishQuiz()
 };
