@@ -10,14 +10,14 @@ export const startApp = async () => {
 
   // TODO add chooseCategory function here
   const categoryId = chooseCategory();
-  questionLists = await getQuestions(categoryId);
+  questionList = await getQuestions(categoryId);
 
   startButton.addEventListener(
     'click',
     () => {
       //TODO validate username
       userName = document.querySelector('.game__user--name').value;
-      startQuiz(questionLists);
+      startQuiz(questionList);
     },
     false,
   );
