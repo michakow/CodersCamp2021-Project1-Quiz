@@ -1,7 +1,16 @@
 export const showLeaderboard = (category) => {
   const leaderboard = JSON.parse(localStorage.getItem('leaderboard')).find(element => element.categoryName === category) || false;
   
-  const scoreDashboard = document.querySelector('.score-dashboard__group');
+  //CreateElements - clear section and build new view
+  const section = document.querySelector('section');
+  section.innerHTML = '';
+  section.className = 'score-dashboard';
+
+  const container = document.createElement('div');
+  container.className = 'container score-dashboard__container';
+
+  const scoreDashboard = document.createElement('div');
+  scoreDashboard.className = '.score-dashboard__group';
 
   const scoreDashboardTitle = document.createElement('h3');
   scoreDashboardTitle.className = 'score-dashboard__title';
@@ -19,7 +28,22 @@ export const showLeaderboard = (category) => {
       <span class="score-dashboard__game-title">${player.score}/10</span>
     </li>`
   ).join('') : '<p>Leaderboard for this category is empty</p>';
+  
+  const categoriesButton = document.createElement('button');
+  categoriesButton.className = 'button finish__button--back';
+  categoriesButton.appendChild(document.createTextNode('Back to categories'));
 
   scoreDashboard.appendChild(scoreDashboardTitle);
   scoreDashboard.appendChild(scoreDashboardScoreList);
+  scoreDashboard.appendChild(categoriesButton);
+
+  container.appendChild(scoreDashboard);
+
+  section.appendChild(container);
+
+  //EventListener - button action
+  categoriesButton.addEventListener('click', () => {
+    console.log('klik w kategorie');
+    //showCategories(); not implemented
+  });
 };
