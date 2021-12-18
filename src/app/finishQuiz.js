@@ -1,10 +1,17 @@
+import { showLeaderboard } from "./leaderboard";
+
 export const finishQuiz = (player, score = 0, category) => {
   const playerName = player;
   const playerScore = score;
   const categoryName = category;
 
-  //CreateElements
-  const finishContainer = document.querySelector('.finish').children[0];
+  //CreateElements - clear section and build new view
+  const section = document.querySelector('section');
+  section.innerHTML = '';
+  section.className = 'finish';
+
+  const finishContainer = document.createElement('div');
+  finishContainer.className = 'container';
 
   const finishHeading = document.createElement('div');
   finishHeading.className = 'finish__result';
@@ -46,18 +53,19 @@ export const finishQuiz = (player, score = 0, category) => {
   finishContainer.appendChild(scoreResult);
   finishContainer.appendChild(buttonsDiv);
 
-  //EventListeners
+  section.appendChild(finishContainer);
+
+  //EventListeners - buttons action
   categoriesButton.addEventListener('click', () => {
     console.log('klik w kategorie');
     //showCategories(); not implemented
   });
 
   scoreboardButton.addEventListener('click', () => {
-    console.log('klik w scoreboard');
-    //showLeaderboard(category); not implemented
+    showLeaderboard(categoryName);
   });
 
-  //LocalStorage
+  //LocalStorage - save player score
   const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
   if (
     leaderboard.length &&
