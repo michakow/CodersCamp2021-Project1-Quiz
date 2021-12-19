@@ -5,8 +5,7 @@ export const startQuiz = async (questionList) => {
   const questionLength = questionList.length;
 
   //TODO startTimer();
-  console.log({questionList})
-  for (let [id, question] of questionList.results.entries()) {
+  for (let [id, question] of questionList.entries()) {
     const answer = await renderQuestion(id, question, questionLength);
     if (answer) points++;
   }
