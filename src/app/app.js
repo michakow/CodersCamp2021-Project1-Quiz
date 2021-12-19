@@ -10,7 +10,7 @@ export const startApp = async () => {
 
   // TODO add chooseCategory function here
   const categoryId = chooseCategory();
-  questionList = await getQuestions(categoryId);
+  const questionList = await getQuestions(categoryId);
 
   startButton.addEventListener(
     'click',
