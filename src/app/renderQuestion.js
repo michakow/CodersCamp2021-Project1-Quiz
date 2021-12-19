@@ -1,5 +1,4 @@
 import { decodeHtmlCharCodes, shuffle } from './tools.js';
-import { finishQuiz } from './finishQuiz';
 
 export const renderQuestion = (questionId, question, questionLength) => {
   const questionsInner = document.getElementsByClassName('questions__inner')[0];
@@ -52,14 +51,6 @@ export const renderQuestion = (questionId, question, questionLength) => {
           answer(false);
         }, 1000);
       }
-
-      if (questionId === questionLength - 1) {
-      setTimeout(() => {
-          return finishQuiz(window.userName, window.points, 'music')
-      }, 2000)
-    }
-
-     
 
       removeListeners();
     };
