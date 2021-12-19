@@ -1,14 +1,18 @@
 import { renderQuestion } from './renderQuestion';
 
+
 export const startQuiz = async (questionList) => {
-  let points = 0;
+  window.points = 0;
   const questionLength = questionList.length;
 
+  const gameInner = document.getElementsByClassName('game__inner')[0];
+  gameInner.innerHTML = "";
   //TODO startTimer();
   for (let [id, question] of questionList.entries()) {
+    console.log({id, question, questionList})
     const answer = await renderQuestion(id, question, questionLength);
-    if (answer) points++;
+    if (answer) window.points++;
+  
   }
 
-  //TODO render finishQuiz()
 };

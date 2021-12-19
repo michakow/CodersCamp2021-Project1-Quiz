@@ -1,11 +1,12 @@
 import { decodeHtmlCharCodes, shuffle } from './tools.js';
+import { finishQuiz } from './finishQuiz';
 
 export const renderQuestion = (questionId, question, questionLength) => {
   const questionsInner = document.getElementsByClassName('questions__inner')[0];
 
   const answers = [...question.incorrect_answers, question.correct_answer];
   const shuffledAnswers = shuffle(answers);
-
+  
   questionsInner.innerHTML = `
     <h3 class="questions__question">
     ${questionId + 1}/${questionLength}. ${question.question}</h3>
@@ -51,6 +52,14 @@ export const renderQuestion = (questionId, question, questionLength) => {
           answer(false);
         }, 1000);
       }
+
+      if (questionId === questionLength - 1) {
+      setTimeout(() => {
+          return finishQuiz(window.userName, window.points, 'music')
+      }, 2000)
+    }
+
+     
 
       removeListeners();
     };

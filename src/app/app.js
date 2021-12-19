@@ -2,11 +2,12 @@ import { getQuestions } from './getData.js';
 import { chooseCategory } from './chooseCategory.js';
 import { startQuiz } from './startQuiz.js';
 
+window.userName = '';
+
 export const startApp = async () => {
   const startButton = document.getElementsByClassName(
     'game__button--start-quiz',
   )[0];
-  let userName = '';
 
   // TODO add chooseCategory function here
   const categoryId = chooseCategory();
@@ -16,7 +17,8 @@ export const startApp = async () => {
     'click',
     () => {
       //TODO validate username
-      userName = document.querySelector('.game__user--name').value;
+      window.userName = document.querySelector('.game__user--name').value;
+      
       startQuiz(questionList);
     },
     false,

@@ -5,6 +5,8 @@ export const finishQuiz = (player, score = 0, category) => {
   const playerScore = score;
   const categoryName = category;
 
+  const questionsInner = document.getElementsByClassName('questions__inner')[0];
+  questionsInner.innerHTML = "";
   //CreateElements - clear section and build new view
   const section = document.querySelector('section');
   section.innerHTML = '';
