@@ -1,6 +1,6 @@
 export const getCategories = async () => {
   try {
-    const res = await fetch('https://opentdb.com/api_category.php?amount=10');
+    const res = await fetch('https://opentdb.com/api_category.php`);
     if (!res.ok) throw new Error(res.statusText);
     const data = await res.json();
     sessionStorage.setItem(
