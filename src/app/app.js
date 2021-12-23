@@ -1,6 +1,7 @@
 import { getQuestions } from './getData.js';
 import { chooseCategory } from './chooseCategory.js';
 import { startQuiz } from './startQuiz.js';
+import {validateUserName} from './tools.js';
 
 window.userName = '';
 
@@ -18,8 +19,14 @@ export const startApp = async () => {
     () => {
       //TODO validate username
       window.userName = document.querySelector('.game__user--name').value;
+      const isValidUser = validateUserName(window.userName)
       
-      startQuiz(questionList);
+      if(isValidUser) {
+         startQuiz(questionList);
+      }
+      else {
+        console.log('niepoprawny user')
+      }
     },
     false,
   );
