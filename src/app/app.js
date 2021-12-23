@@ -13,19 +13,26 @@ export const startApp = async () => {
   // TODO add chooseCategory function here
   const categoryId = chooseCategory();
   const questionList = await getQuestions(categoryId);
+  let errorText;
 
   startButton.addEventListener(
     'click',
     () => {
       //TODO validate username
-      window.userName = document.querySelector('.game__user--name').value;
+      const userInput = document.querySelector('.game__user--name')
+      window.userName = userInput.value;
       const isValidUser = validateUserName(window.userName)
-      
       if(isValidUser) {
          startQuiz(questionList);
       }
       else {
-        console.log('niepoprawny user')
+        if (errorText) {
+          return;
+        }
+        errorText = document.createElement('div');
+        errorText.classList.add('game__error');
+        errorText.appendChild(document.createTextNode('User Name should consist of min 3 LETTERS, and letters only.'));
+        userInput.parentNode.insertBefore(errorText, userInput.nextSibling);
       }
     },
     false,

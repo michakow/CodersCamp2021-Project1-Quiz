@@ -26,4 +26,5 @@ export const validateUserName = (user) => {
   const usernameRegex = /^[a-zA-Z]+$/;
   const isValid = user.match(usernameRegex);
   return !!isValid ;
-}
+};
+ 
