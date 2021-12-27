@@ -1,8 +1,8 @@
 import { finishQuiz } from './finishQuiz.js';
 
-export const startTimer = (questionsAmount) => {
+export const startTimer = (questionsAmount, id) => {
   const timer = document.querySelector('.questions__timer');
-  const questions = document.querySelector('.questions__inner');
+  const questions = document.querySelector('.questions');
 
   timer.textContent = '';
   const totalTime = 60;
@@ -13,22 +13,29 @@ export const startTimer = (questionsAmount) => {
       timeleft--;
       let minutes = Math.floor(timeleft / 60);
       let seconds = Math.floor(timeleft % 60);
-      let questionId = +sessionStorage.getItem('questionId');
 
       timer.textContent = `Time left: ${minutes}m ${seconds}s`;
 
       if (timeleft < 0) {
-        console.log(timeleft);
         clearInterval(interval);
         timer.textContent = `Time left: 0m 0s`;
 
         timer.style.display = 'none';
-        questions.style.display = 'none';
+        questions.remove();
         finishQuiz();
-      } else if (questionId === questionsAmount) {
+      } else if (id === questionsAmount) {
         clearInterval(interval);
         timer.style.display = 'none';
       }
     }, 1000);
+    return interval;
   }
+};
+
+export const stopTimer = (timer) => {
+  const questions = document.querySelector('.questions');
+  const timerElem = document.querySelector('.questions__timer');
+  timerElem.style.display = 'none';
+  questions.remove();
+  clearInterval(timer);
 };
