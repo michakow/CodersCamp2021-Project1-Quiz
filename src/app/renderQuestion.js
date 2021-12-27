@@ -5,7 +5,7 @@ export const renderQuestion = (questionId, question, questionLength) => {
 
   const answers = [...question.incorrect_answers, question.correct_answer];
   const shuffledAnswers = shuffle(answers);
-
+  
   questionsInner.innerHTML = `
     <h3 class="questions__question">
     ${questionId + 1}/${questionLength}. ${question.question}</h3>

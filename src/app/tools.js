@@ -17,3 +17,14 @@ export const shuffle = ([...arr]) => {
   }
   return arr;
 };
+
+
+export const validateUserName = (user) => {
+  if (user.length < 3) {
+    return false;
+  }
+  const usernameRegex = /^[a-zA-Z]+$/;
+  const isValid = user.match(usernameRegex);
+  return !!isValid ;
+};
+ 
