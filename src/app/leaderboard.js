@@ -1,3 +1,5 @@
+import { homepage } from "./homepage";
+
 export const showLeaderboard = (category) => {
   const leaderboard = JSON.parse(localStorage.getItem('leaderboard')).find(element => element.categoryName === category) || false;
   
@@ -43,7 +45,6 @@ export const showLeaderboard = (category) => {
 
   //EventListener - button action
   categoriesButton.addEventListener('click', () => {
-    console.log('klik w kategorie');
-    //showCategories(); not implemented
+    homepage(JSON.parse(sessionStorage.getItem('categories')));
   });
 };

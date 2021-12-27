@@ -1,29 +1,52 @@
 import { getQuestions } from './getData.js';
-import { chooseCategory } from './chooseCategory.js';
+import { homepage } from './homepage.js';
+import { showLeaderboard } from './leaderboard.js';
+// import { chooseCategory } from './chooseCategory.js';
 import { startQuiz } from './startQuiz.js';
 import {validateUserName} from './tools.js';
 
 window.userName = '';
 
-export const startApp = async () => {
+export const startApp = async (id, name) => {
+  const categoryID = id;
+  const categoryName = name;
+
+  const div = document.querySelector('#app');
+  div.innerHTML = `
+    <section class="game">
+      <div class="container game__inner">
+        <input class="game__user--name" placeholder="Enter your name..." />
+
+        <button class="button game__button--start-quiz">Start Quiz</button>
+        <button class="button game__button--scores">Scores</button>
+        <p class="game__questions-quantity">
+          Total questions for ${categoryName}: 245
+        </p>
+        <button class="button game__button--back">Back to categories</button>
+      </div>
+    </section>
+  `;
+
   const startButton = document.getElementsByClassName(
     'game__button--start-quiz',
   )[0];
 
   // TODO add chooseCategory function here
-  const categoryId = chooseCategory();
-  const questionList = await getQuestions(categoryId);
+  // const categoryId = chooseCategory();
+  // until chooseCategory is finished use id
+  console.log(id);
+  const questionList = await getQuestions(categoryID);
   let errorText;
 
   startButton.addEventListener(
     'click',
     () => {
       //TODO validate username
-      const userInput = document.querySelector('.game__user--name')
+      const userInput = document.querySelector('.game__user--name');
       window.userName = userInput.value;
-      const isValidUser = validateUserName(window.userName)
+      const isValidUser = validateUserName(window.userName);
       if(isValidUser) {
-         startQuiz(questionList);
+         startQuiz(questionList, categoryName);
       }
       else {
         if (errorText) {
@@ -37,36 +60,14 @@ export const startApp = async () => {
     },
     false,
   );
+
+  const scoreButton = document.querySelector('.game__button--scores');
+  scoreButton.addEventListener('click', () => {
+    showLeaderboard(categoryName);
+  });
+
+  const backButton = document.querySelector('.game__button--back');
+  backButton.addEventListener('click', () => {
+    homepage(JSON.parse(sessionStorage.getItem('categories')));
+  });
 };
-
-//example leaderboard
-// localStorage.setItem(
-//   'leaderboard',
-//   JSON.stringify([
-//     {
-//       categoryName: 'mythology',
-//       players: [
-//         {
-//           name: 'waldek',
-//           score: 5,
-//         },
-//         {
-//           name: 'kazik',
-//           score: 3,
-//         },
-//       ],
-//     },
-//     {
-//       categoryName: 'music',
-//       players: [
-//         {
-//           name: 'przemek',
-//           score: 9,
-//         },
-//       ],
-//     },
-//   ]),
-// );
-// showLeaderboard('mythology');
-
-// finishQuiz('darek', 6, 'music');
