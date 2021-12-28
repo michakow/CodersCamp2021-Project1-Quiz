@@ -1,6 +1,6 @@
 .category {
   padding-top: 103px;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
 
   &__container {
     max-width: 1444px;
@@ -9,7 +9,7 @@
   &__list {
     display: grid;
     gap: 96px;
-    align-items: center;
+    align-items: start;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 
@@ -38,5 +38,15 @@
   &__name {
     font-size: 25px;
     text-align: center;
+  }
+}
+
+@media (max-width: 776px) {
+  .category {
+    padding-top: 50px;
+
+    &__list {
+      gap: 50px;
+    }
   }
 }
