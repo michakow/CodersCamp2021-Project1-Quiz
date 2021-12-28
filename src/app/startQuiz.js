@@ -13,18 +13,17 @@ export const startQuiz = async (questionList, categoryName) => {
   `;
 
   const questionLength = questionList.length;
-  let points = 0;
-      
-  const timer = startTimer(questionLength);
+  window.points = 0;
+
+  const timer = startTimer(window.userName, categoryName);
 
   for (let [id, question] of questionList.entries()) {
     const answer = await renderQuestion(id, question, questionLength);
-    if (answer) points++;
+    if (answer) window.points++;
 
     if (id === questionLength - 1) {
       stopTimer(timer);
-      return finishQuiz(window.userName, points, categoryName);
+      return finishQuiz(window.userName, window.points, categoryName);
     }
   }
-
 };
