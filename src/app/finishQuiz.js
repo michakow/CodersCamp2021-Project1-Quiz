@@ -1,3 +1,4 @@
+import { homepage } from "./homepage";
 import { showLeaderboard } from "./leaderboard";
 
 export const finishQuiz = (player, score = 0, category) => {
@@ -5,9 +6,10 @@ export const finishQuiz = (player, score = 0, category) => {
   const playerScore = score;
   const categoryName = category;
 
-  const questionsInner = document.getElementsByClassName('questions__inner')[0];
-  questionsInner.innerHTML = "";
   //CreateElements - clear section and build new view
+  const div = document.querySelector('#app');
+  div.innerHTML = `<section></section>`;
+
   const section = document.querySelector('section');
   section.innerHTML = '';
   section.className = 'finish';
@@ -59,8 +61,7 @@ export const finishQuiz = (player, score = 0, category) => {
 
   //EventListeners - buttons action
   categoriesButton.addEventListener('click', () => {
-    console.log('klik w kategorie');
-    //showCategories(); not implemented
+    homepage(JSON.parse(sessionStorage.getItem('categories')));
   });
 
   scoreboardButton.addEventListener('click', () => {
