@@ -1,11 +1,12 @@
-import { decodeHtmlCharCodes, shuffle } from './tools.js';
+import { htmlEntities, shuffle } from './tools.js';
 
 export const renderQuestion = (questionId, question, questionLength) => {
   const questionsInner = document.getElementsByClassName('questions__inner')[0];
 
   const answers = [...question.incorrect_answers, question.correct_answer];
+
   const shuffledAnswers = shuffle(answers);
-  
+
   questionsInner.innerHTML = `
     <h3 class="questions__question">
     ${questionId + 1}/${questionLength}. ${question.question}</h3>
@@ -19,7 +20,7 @@ export const renderQuestion = (questionId, question, questionLength) => {
   const answerButtons = document.querySelectorAll('.questions__answer');
 
   const checkAnswer = (answer) =>
-    answer === decodeHtmlCharCodes(question.correct_answer);
+    htmlEntities(answer) === question.correct_answer;
 
   const showCorrectAnswer = () => {
     const answerButtons = document.querySelectorAll('.questions__answer');
@@ -41,12 +42,10 @@ export const renderQuestion = (questionId, question, questionLength) => {
         setTimeout(() => {
           answer(true);
         }, 1000);
-        console.log('correct answer');
       } else {
         target.classList.add('questions__answer--wrong');
 
         showCorrectAnswer();
-        console.log('incorrect answer');
         setTimeout(() => {
           answer(false);
         }, 1000);
