@@ -1,5 +1,8 @@
+import { loader } from './loader.js';
+
 export const getCategories = async () => {
   try {
+    loader();
     const res = await fetch('https://opentdb.com/api_category.php');
     if (!res.ok) throw new Error(res.statusText);
     const data = await res.json();
