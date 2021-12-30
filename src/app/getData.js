@@ -35,6 +35,18 @@ export const getQuestions = async (categoryID) => {
   }
 };
 
+export const getQuestionTotalCount = async (categoryID) => {
+  try {
+    const res = await fetch(`https://opentdb.com/api_count.php?category=${categoryID}`);
+
+    if (!res.ok) throw new Error(res.statusText);
+    const data = await res.json();
+    return data.category_question_count;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // export const getQuiz = (categoryID) => {
 //   fetch(`https://opentdb.com/api_count.php?category=${categoryID}`)
 //   .then(res => res.json())
