@@ -23,6 +23,7 @@
 
     &--start-quiz {
       background-color: variables.$green;
+      margin-top: 50px;
     }
 
     &--scores {
@@ -51,7 +52,6 @@
     text-align: center;
     font-size: 20px;
     margin-top: -40px;
-    margin-bottom: 40px;
     color: red;
   }
 }
