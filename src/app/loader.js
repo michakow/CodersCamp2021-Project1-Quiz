@@ -1,7 +1,6 @@
 export const loader = () => {
-  const div = document.querySelector('#app');
-  const loader = document.createElement('div');
-  loader.className = 'lds-dual-ring';
+  const parent = document.querySelector('#app');
+  const loader = `<div class="lds-dual-ring"></div>`;
 
-  div.append(loader);
+  parent.innerHTML = loader;
 };
