@@ -13,6 +13,18 @@ export const startApp = async (id, name) => {
 
   const questionCount = await getQuestionTotalCount(categoryID);
 
+  let questionCountForLevel;
+  switch(window.questionsLevel){
+    case 'hard': 
+      questionCountForLevel = questionCount.total_hard_question_count;
+      break;
+    case 'medium':
+      questionCountForLevel = questionCount.total_medium_question_count;
+      break;
+    default: 
+      questionCountForLevel = questionCount.total_easy_question_count;
+  }
+
   const div = document.querySelector('#app');
   div.innerHTML = `
     <section class="game">
@@ -22,7 +34,9 @@ export const startApp = async (id, name) => {
         <button class="button game__button--start-quiz">Start Quiz</button>
         <button class="button game__button--scores">Scores</button>
         <p class="game__questions-quantity">
-          Total questions for ${categoryName}: ${questionCount.total_question_count}
+          <span class="game__category-name">${categoryName}</span>
+          <span class="game__total-questions">Total questions: ${questionCount.total_question_count}</span>
+          <span class="game__total-questions-for-level">Questions for ${window.questionsLevel || 'easy'} level: ${questionCountForLevel}</span>
         </p>
         <button class="button game__button--back">Back to categories</button>
       </div>
