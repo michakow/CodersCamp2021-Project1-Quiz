@@ -1,4 +1,4 @@
-import { getQuestions } from './getData.js';
+import { getQuestions, getToken } from './getData.js';
 import { homepage } from './homepage.js';
 import { showLeaderboard } from './leaderboard.js';
 // import { chooseCategory } from './chooseCategory.js';
@@ -10,6 +10,9 @@ window.userName = '';
 export const startApp = async (id, name) => {
   const categoryID = id;
   const categoryName = name;
+  const token = sessionStorage.getItem('token') 
+  ? JSON.parse(sessionStorage.getItem('token')) 
+  : await getToken();
 
   const div = document.querySelector('#app');
   div.innerHTML = `
@@ -35,7 +38,7 @@ export const startApp = async (id, name) => {
   // const categoryId = chooseCategory();
   // until chooseCategory is finished use id
   console.log(id);
-  const questionList = await getQuestions(categoryID);
+  const questionList = await getQuestions(categoryID, token);
   let errorText;
 
   startButton.addEventListener(

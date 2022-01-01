@@ -13,13 +13,13 @@ export const getCategories = async () => {
   }
 };
 
-export const getQuestions = async (categoryID) => {
+export const getQuestions = async (categoryID, token) => {
   try {
     let path;
     if (categoryID === 999) {
       path = 'https://opentdb.com/api.php?amount=10';
     } else {
-      path = `https://opentdb.com/api.php?amount=10&category=${categoryID}`;
+      path = `https://opentdb.com/api.php?amount=10&category=${categoryID}&token=${token}`;
     }
     const res = await fetch(path);
 
@@ -41,3 +41,18 @@ export const getQuestions = async (categoryID) => {
 //   .then(data => console.log(data))
 // }
 // jak zrobić return z tego ?
+
+export const getToken = async () => {
+  try {
+    const res = await fetch('https://opentdb.com/api_token.php?command=request');
+    if (!res.ok) throw new Error(res.statusText);
+    const data = await res.json();
+    sessionStorage.setItem(
+      'token',
+      JSON.stringify(data.token),
+    );
+    return data.token;
+  } catch (error) {
+    console.error(error);
+  }
+};
