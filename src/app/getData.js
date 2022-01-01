@@ -7,7 +7,7 @@ export const getCategories = async () => {
       'categories',
       JSON.stringify(data.trivia_categories),
     );
-    return data;
+    return data.trivia_categories;
   } catch (error) {
     console.error(error);
   }
