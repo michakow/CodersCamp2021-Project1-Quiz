@@ -15,11 +15,12 @@ export const getCategories = async () => {
 
 export const getQuestions = async (categoryID) => {
   try {
+    const questionsLevel = window.questionsLevel || 'easy';
     let path;
     if (categoryID === 999) {
       path = 'https://opentdb.com/api.php?amount=10';
     } else {
-      path = `https://opentdb.com/api.php?amount=10&category=${categoryID}`;
+      path = `https://opentdb.com/api.php?amount=10&category=${categoryID}&difficulty=${questionsLevel}`;
     }
     const res = await fetch(path);
 
