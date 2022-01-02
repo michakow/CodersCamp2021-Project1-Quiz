@@ -10,7 +10,5 @@ window.onload = async () => {
     ? JSON.parse(sessionStorage.getItem('categories'))
     : await getCategories();
 
-  console.log(categories);
-
   homepage(categories);
 };

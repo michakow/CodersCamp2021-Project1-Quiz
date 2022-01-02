@@ -1,7 +1,8 @@
 import { homepage } from "./homepage";
 
 export const showLeaderboard = (category) => {
-  const leaderboard = JSON.parse(localStorage.getItem('leaderboard')).find(element => element.categoryName === category) || false;
+  const leaderboard = !localStorage.getItem('leaderboard') === true ? false 
+  : JSON.parse(localStorage.getItem('leaderboard')).find(element => element.categoryName === category) || false;
   
   //CreateElements - clear section and build new view
   const section = document.querySelector('section');
