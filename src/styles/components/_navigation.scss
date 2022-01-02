@@ -4,100 +4,57 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 89px;
+  padding: 0 30px;
 
-  &__list {
-    display: flex;
-  }
-
-  &__menu {
-    max-width: 700px;
-    padding-top: 24px;
-    padding-bottom: 23px;
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-    background-color: variables.$blue;
-  }
-
-  &__list {
-    margin-left: 78px;
-    margin-right: 241px;
-  }
-
-  &__item:not(:last-child) {
-    margin-right: 56px;
+  &__menu{
+    position: relative;
   }
 
   &__burger {
-    display: none;
+    display: block;
     width: 50px;
-    height: 25px;
+    height: 32px;
     background-color: transparent;
-  }
-}
-
-.fa-cog,
-.fa-clock,
-.fa-user-friends {
-  font-size: 70px;
-  color: black;
-  transition: all 0.3s;
-
-  &:hover {
-    color: variables.$text-color;
-  }
-}
-
-@media (max-width: 1200px) {
-  .navigation {
-    &__menu {
-      padding-top: 30px;
-    }
-
-    &__list {
-      margin-right: 100px;
-    }
+    cursor: pointer;
   }
 
-  .fa-cog,
-  .fa-clock,
-  .fa-user-friends {
-    font-size: 65px;
-  }
-}
+  &__dropdown{
+    position: absolute;
+    display: none;
+    bottom: 0;
+    right: 0;
+    width: 260px;
+    transform: translateY(calc(100% + 5px));
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 6px -2px black;
 
-@media (max-width: 992px) {
-  .navigation {
-    &__img {
-      height: 90px;
-    }
-
-    &__menu {
-      padding-top: 25px;
-    }
-
-    &__list {
-      margin-right: 50px;
-    }
-  }
-
-  .fa-cog,
-  .fa-clock,
-  .fa-user-friends {
-    font-size: 50px;
-  }
-}
-
-@media (max-width: 776px) {
-  .navigation {
-    padding-right: 30px;
-
-    &__menu {
-      display: none;
-    }
-
-    &__burger {
+    &.active {
       display: block;
+    }
+  }
+
+  &__title {
+    font-size: 15px;
+  }
+
+  &__level-name {
+    text-transform: capitalize;
+  }
+
+  &__level-list{
+    list-style: none;
+  }
+
+  &__list-item{
+    display: block;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover{
+      background-color: #dbdbdb;
     }
   }
 }
