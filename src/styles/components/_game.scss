@@ -1,13 +1,15 @@
 @use '../variables';
 
 .game {
-  padding-top: 103px;
-  padding-bottom: 50px;
+  padding-top: 50px;
+  padding-bottom: 40px;
 
   &__inner {
     display: flex;
+    height: 90vh;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     max-width: 560px;
   }
 
@@ -63,5 +65,46 @@
     margin-top: -40px;
     margin-bottom: 40px;
     color: red;
+  }
+}
+
+@media (max-width: 776px) {
+  .game {
+    padding-top: 50px;
+
+    &__questions-quantity {
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    &__button {
+      &--start-quiz,
+      &--scores {
+        margin-bottom: 50px;
+      }
+
+      &--back {
+        font-size: 30px;
+      }
+    }
+
+    &__user--name {
+      font-size: 25px;
+      padding: 20px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .game {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    &__button {
+      &--back {
+        margin-bottom: 30px;
+        font-size: 20px;
+      }
+    }
   }
 }
