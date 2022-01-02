@@ -9,14 +9,13 @@
   &__list {
     display: grid;
     gap: 96px;
-    align-items: center;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 
   &__card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 0 auto;
     transition: all 0.2s;
 
@@ -30,9 +29,15 @@
   max-width: 200px;
 
   &__image {
-    max-width: 200px;
+    width: 200px;
+    height: 200px;
+    align-items: flex-end;
     margin-bottom: 13px;
     border-radius: 25px;
+    object-fit: contain;
+    padding: 20px;
+    background-color: rgb(231, 221, 193);
+    color: #434343;
   }
 
   &__name {
