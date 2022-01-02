@@ -12,18 +12,21 @@
     "start": "parcel -p 8080 src/index.html",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/michakow/CodersCamp2021-Project1-Quiz.git"
   },
-  "homepage": "https://github.com/michakow/CodersCamp2021-Project1-Quiz#readme",
+  "homepage": "https://michakow.github.io/CodersCamp2021-Project1-Quiz",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.1",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^25.3.0",
+    "gh-pages": "^3.2.3",
     "jest": "^27.4.3",
     "parcel": "^2.0.1",
     "prettier": "^2.5.0"
