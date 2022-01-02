@@ -16,3 +16,17 @@
     transform: translateY(-5px);
   }
 }
+
+@media (max-width: 776px) {
+  .button {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .button {
+    font-size: 25px;
+  }
+}

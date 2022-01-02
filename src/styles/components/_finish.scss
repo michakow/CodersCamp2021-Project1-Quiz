@@ -1,7 +1,7 @@
 @use '../variables';
 
 .finish {
-  padding-top: 103px;
+  padding-top: 90px;
   padding-bottom: 50px;
 
   &__result {
@@ -48,7 +48,6 @@
   &__button--scoreboard {
     margin-top: 70px;
     padding: 10px;
-    font-size: 40px;
     width: 90%;
   }
 }

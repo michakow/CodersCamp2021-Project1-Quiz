@@ -1,6 +1,6 @@
 import { finishQuiz } from './finishQuiz.js';
 
-export const startTimer = (questionsAmount, id) => {
+export const startTimer = (userName, categoryName) => {
   const timer = document.querySelector('.questions__timer');
   const questions = document.querySelector('.questions');
 
@@ -22,10 +22,7 @@ export const startTimer = (questionsAmount, id) => {
 
         timer.style.display = 'none';
         questions.remove();
-        finishQuiz();
-      } else if (id === questionsAmount) {
-        clearInterval(interval);
-        timer.style.display = 'none';
+        finishQuiz(userName, window.points, categoryName);
       }
     }, 1000);
     return interval;

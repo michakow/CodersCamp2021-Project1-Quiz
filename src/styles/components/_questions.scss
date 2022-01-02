@@ -1,7 +1,7 @@
 @use '../variables';
 
 .questions {
-  padding-top: 167px;
+  padding-top: 90px;
   padding-bottom: 188px;
 
   &__question {
@@ -69,6 +69,9 @@
 
 @media (max-width: 500px) {
   .questions {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
     &__question {
       padding-left: 10px;
       padding-right: 10px;
