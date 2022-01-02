@@ -466,7 +466,6 @@ window.onload = async ()=>{
     _loaderJs.loader();
     // Here goes logic:
     const categories = sessionStorage.getItem('categories') ? JSON.parse(sessionStorage.getItem('categories')) : await _getDataJs.getCategories();
-    console.log(categories);
     _homepageJs.homepage(categories);
 };
 
@@ -783,7 +782,7 @@ parcelHelpers.export(exports, "showLeaderboard", ()=>showLeaderboard
 );
 var _homepage = require("./homepage");
 const showLeaderboard = (category)=>{
-    const leaderboard = JSON.parse(localStorage.getItem('leaderboard')).find((element)=>element.categoryName === category
+    const leaderboard = !localStorage.getItem('leaderboard') === true ? false : JSON.parse(localStorage.getItem('leaderboard')).find((element)=>element.categoryName === category
     ) || false;
     //CreateElements - clear section and build new view
     const section = document.querySelector('section');
