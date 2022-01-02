@@ -24,7 +24,13 @@ export const getQuestions = async (categoryID, token) => {
     const res = await fetch(path);
 
     if (!res.ok) throw new Error(res.statusText);
+
     const data = await res.json();
+
+    if(data.response_code !== 0) {
+      const newToken = await getToken();
+      return await getQuestions(categoryID, newToken);
+    } 
     // sessionStorage.setItem(
     //   'questions',
     //   JSON.stringify(data.results),
