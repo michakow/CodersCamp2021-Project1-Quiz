@@ -1,6 +1,5 @@
 .category {
-  padding-top: 90px;
-  padding-bottom: 30px;
+  padding-top: 70px;
 
   &__container {
     max-width: 1444px;
@@ -8,7 +7,7 @@
 
   &__list {
     display: grid;
-    gap: 96px;
+    gap: 70px;
     align-items: start;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
@@ -44,6 +43,7 @@
 @media (max-width: 776px) {
   .category {
     padding-top: 50px;
+    padding-bottom: 15px;
 
     &__list {
       gap: 50px;
