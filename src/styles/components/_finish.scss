@@ -51,3 +51,33 @@
     width: 90%;
   }
 }
+@media (max-width: 1200px) {
+  .finish {
+    &__buttons {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@media (max-width: 776px) {
+  .finish {
+    &__result {
+      font-size: 30px;
+    }
+
+    &__score-group {
+      padding-top: 100px;
+
+      & h3,
+      span {
+        text-align: center;
+        font-size: 40px;
+      }
+    }
+
+    &__button--scoreboard {
+      margin-top: 30px;
+    }
+  }
+}
