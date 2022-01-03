@@ -65,7 +65,7 @@ export const finishQuiz = (player, score = 0, category, questionsLength) => {
   });
 
   scoreboardButton.addEventListener('click', () => {
-    showLeaderboard(categoryName);
+    showLeaderboard(categoryName, questionsLength);
   });
 
   //LocalStorage - save player score

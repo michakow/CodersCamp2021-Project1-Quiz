@@ -86,7 +86,7 @@ export const startApp = async (id, name) => {
 
   const scoreButton = document.querySelector('.game__button--scores');
   scoreButton.addEventListener('click', () => {
-    showLeaderboard(categoryName);
+    showLeaderboard(categoryName, questionList.length);
   });
 
   const backButton = document.querySelector('.game__button--back');
