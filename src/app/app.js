@@ -55,7 +55,7 @@ export const startApp = async (id, name) => {
   // const categoryId = chooseCategory();
   // until chooseCategory is finished use id
   console.log(id);
-  const questionList = await getQuestions(categoryID, token);
+  const questionList = await getQuestions(categoryID, token, questionCountForLevel);
   let errorText;
 
   startButton.addEventListener(
