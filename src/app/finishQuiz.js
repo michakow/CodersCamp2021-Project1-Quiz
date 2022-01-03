@@ -5,6 +5,7 @@ export const finishQuiz = (player, score = 0, category) => {
   const playerName = player;
   const playerScore = score;
   const categoryName = category;
+  const quizLevel = window.questionsLevel || 'easy';
 
   //CreateElements - clear section and build new view
   const div = document.querySelector('#app');
@@ -79,6 +80,7 @@ export const finishQuiz = (player, score = 0, category) => {
       .players.push({
         name: playerName,
         score: playerScore,
+        level: quizLevel,
       });
   } else {
     leaderboard.push({
@@ -87,6 +89,7 @@ export const finishQuiz = (player, score = 0, category) => {
         {
           name: playerName,
           score: playerScore,
+          level: quizLevel,
         },
       ],
     });
