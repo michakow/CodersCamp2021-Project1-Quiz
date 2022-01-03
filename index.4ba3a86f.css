@@ -581,6 +581,28 @@ a {
   padding: 10px;
   width: 90%;
 }
+@media (max-width: 1200px) {
+  .finish__buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 776px) {
+  .finish__result {
+    font-size: 30px;
+  }
+  .finish__score-group {
+    padding-top: 100px;
+  }
+  .finish__score-group h3,
+.finish__score-group span {
+    text-align: center;
+    font-size: 35px;
+  }
+  .finish__button--scoreboard {
+    margin-top: 30px;
+  }
+}
 .game {
   padding-top: 50px;
   padding-bottom: 40px;
@@ -610,6 +632,7 @@ a {
 }
 .game__button--start-quiz {
   background-color: #bad4aa;
+  margin-top: 90px;
 }
 .game__button--scores {
   background-color: #ff5e00;
@@ -623,7 +646,6 @@ a {
   max-width: 560px;
   width: 100%;
   padding: 42px 20px 38px 0;
-  margin-bottom: 68px;
   font-size: 30px;
   text-indent: 20px;
   font-family: Segoe UI;
@@ -633,10 +655,14 @@ a {
 }
 .game__error {
   text-align: center;
-  font-size: 20px;
-  margin-top: -40px;
-  margin-bottom: 40px;
+  font-size: 15px;
   color: red;
+  position: absolute;
+  top: 190px;
+  max-width: 480px;
+  width: 90%;
+  height: 50px;
+  padding: 0 10px 0 25px;
 }
 @media (max-width: 776px) {
   .game {
@@ -656,10 +682,15 @@ a {
     font-size: 25px;
     padding: 20px;
   }
+  .game__error {
+    font-size: 14px;
+    top: 8.2rem;
+    padding: 0 40px 0 20px;
+  }
 }
 @media (max-width: 576px) {
   .game {
-    padding-top: 10px;
+    padding-top: 40px;
     padding-bottom: 10px;
   }
   .game__button--back {

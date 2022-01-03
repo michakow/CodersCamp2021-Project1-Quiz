@@ -868,7 +868,7 @@ const renderQuestion = (questionId, question, questionLength)=>{
     }).join('')}
     `;
     const answerButtons1 = document.querySelectorAll('.questions__answer');
-    const checkAnswer = (answer)=>answer === _toolsJs.decodeHtmlCharCodes(question.correct_answer)
+    const checkAnswer = (answer)=>_toolsJs.htmlEntities(answer) === question.correct_answer
     ;
     const showCorrectAnswer = ()=>{
         const answerButtons = document.querySelectorAll('.questions__answer');
@@ -884,11 +884,9 @@ const renderQuestion = (questionId, question, questionLength)=>{
                 setTimeout(()=>{
                     answer(true);
                 }, 1000);
-                console.log('correct answer');
             } else {
                 target.classList.add('questions__answer--wrong');
                 showCorrectAnswer();
-                console.log('incorrect answer');
                 setTimeout(()=>{
                     answer(false);
                 }, 1000);
@@ -911,6 +909,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "decodeHtmlCharCodes", ()=>decodeHtmlCharCodes
 );
+parcelHelpers.export(exports, "htmlEntities", ()=>htmlEntities
+);
 parcelHelpers.export(exports, "saveDataToSessionStorage", ()=>saveDataToSessionStorage
 );
 parcelHelpers.export(exports, "shuffle", ()=>shuffle
@@ -920,6 +920,9 @@ parcelHelpers.export(exports, "validateUserName", ()=>validateUserName
 const decodeHtmlCharCodes = (str)=>str.replace(/(&#(\d+);)/g, (match, capture, charCode)=>String.fromCharCode(charCode)
     )
 ;
+const htmlEntities = (str)=>{
+    return String(str).replace(/&/g, '&amp;').replace(/'/g, '&#039;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/á/g, '&aacute;').replace(/é/g, '&eacute;').replace(/í/g, '&iacute;').replace(/ó/g, '&oacute;').replace(/ú/g, '&uacute;');
+};
 const saveDataToSessionStorage = (key, value)=>{
     sessionStorage.setItem(key, value);
 };
