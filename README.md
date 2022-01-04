@@ -37,19 +37,25 @@ Aplikacja została wykonana wg dostarczonych przez organizatorów CodersCamp wym
 
 Pierwszy widok jaki zastaniemy po przejściu do aplikacji służy do wyboru poziomu trudności Quizu z Menu oraz interesującej nas kateogrii pytań
 
-> dodać screen
+![](./src/images/readme/homepage.png 'Strona startowa')
+
+### Strona startu quizu
+
+Po wyborze kategorii użytkownik przechodzi na stronę startu quizu. Użytkownik może wprowadzić swoje imię i zacząć tryb rozgrywki po kliknięciu przycisku 'Start Quiz', lub sprawdzić wyniki dla danej kategorii i poziomu trudności klikając w przycisk 'Scores'.
+
+![](./src/images/readme/start_quiz.png 'Strona startu quizu')
 
 ### Rozgrywka
 
 Rozgrywka polega na udzieleniu odpowiedzi na pytanie poniżej wyznaczonego czasu. Za każdą dobrą odpowiedź gracz otrzymuje punkt, a po skończeniu gry jego wynik zostaje zapisany wraz z podaną wcześniej nazwą.
 
-> dodać screen
+![](./src/images/readme/game.png 'Rozrywka')
 
 ### Tabela wyników
 
 Dla każdej kategorii możemy sprawdzić wszystkie wyniki graczy biorących udział w rozgrywce na danym urządzeniu - wyniki przechowywane są w LocalStorage
 
-> dodać screen
+![](./src/images/readme/scoreboard.png 'Tabela wyników')
 
 ### Wykorzystane technologie
 
@@ -64,10 +70,11 @@ Dla każdej kategorii możemy sprawdzić wszystkie wyniki graczy biorących udzi
 W projekcie zostało wykorzystane zewnętrzne API od [Open Trivia Database](https://opentdb.com/).
 
 Z API pobierane są:
+
 - Lista, wybranych przez zespół, kategorii, które zostają następnie zapisane w SessionStorage, aby ograniczyć liczbę requestów
 - Pytania dla wybranej przez użytkownika kategorii
 - Liczba wszystkich pytań łącznie dla wybranej kategorii, jak i dla konkretnego poziomu trudności Quizu
-- Token sesji, który odpowiada za niepowtarzalność pytań oraz obsługę błędnego requestu, który również zostaje zapisany w SessionStorage 
+- Token sesji, który odpowiada za niepowtarzalność pytań oraz obsługę błędnego requestu, który również zostaje zapisany w SessionStorage
 
 ### Uruchomienie projektu
 
