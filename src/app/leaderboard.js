@@ -1,6 +1,6 @@
 import { homepage } from './homepage';
 
-export const showLeaderboard = (category) => {
+export const showLeaderboard = (category, questionsLength) => {
   const leaderboard = !localStorage.getItem('leaderboard') === true ? false 
   : JSON.parse(localStorage.getItem('leaderboard')).find(element => element.categoryName === category) || false;
 
@@ -39,7 +39,7 @@ export const showLeaderboard = (category) => {
           (player) =>
             `<li class="score-dashboard__player-score">
               <span class="score-dashboard__game-title">${player.name}</span>
-              <span class="score-dashboard__game-title">${player.score}/10</span>
+              <span class="score-dashboard__game-title">${player.score}/${questionsLength}</span>
             </li>`,
         )
         .join('');

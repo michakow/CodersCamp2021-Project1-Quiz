@@ -15,7 +15,7 @@ export const startQuiz = async (questionList, categoryName) => {
   const questionLength = questionList.length;
   window.points = 0;
 
-  const timer = startTimer(window.userName, categoryName);
+  const timer = startTimer(window.userName, categoryName, questionLength);
 
   for (let [id, question] of questionList.entries()) {
     const answer = await renderQuestion(id, question, questionLength);
@@ -23,7 +23,7 @@ export const startQuiz = async (questionList, categoryName) => {
 
     if (id === questionLength - 1) {
       stopTimer(timer);
-      return finishQuiz(window.userName, window.points, categoryName);
+      return finishQuiz(window.userName, window.points, categoryName, questionLength);
     }
   }
 };

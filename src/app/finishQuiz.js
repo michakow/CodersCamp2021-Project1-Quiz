@@ -1,7 +1,7 @@
 import { homepage } from "./homepage";
 import { showLeaderboard } from "./leaderboard";
 
-export const finishQuiz = (player, score = 0, category) => {
+export const finishQuiz = (player, score = 0, category, questionsLength) => {
   const playerName = player;
   const playerScore = score;
   const categoryName = category;
@@ -36,7 +36,7 @@ export const finishQuiz = (player, score = 0, category) => {
   scoreHeading.appendChild(document.createTextNode('your score'));
   const scoreSpan = document.createElement('span');
   scoreSpan.className = 'finish__score';
-  scoreSpan.appendChild(document.createTextNode(`${playerScore}/10`));
+  scoreSpan.appendChild(document.createTextNode(`${playerScore}/${questionsLength}`));
 
   scoreResult.appendChild(scoreHeading);
   scoreResult.appendChild(scoreSpan);
@@ -66,7 +66,7 @@ export const finishQuiz = (player, score = 0, category) => {
   });
 
   scoreboardButton.addEventListener('click', () => {
-    showLeaderboard(categoryName);
+    showLeaderboard(categoryName, questionsLength);
   });
 
   //LocalStorage - save player score

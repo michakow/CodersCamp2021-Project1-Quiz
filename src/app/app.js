@@ -1,27 +1,31 @@
-import { getQuestions, getQuestionTotalCount } from './getData.js';
+import { getQuestions, getQuestionTotalCount, getToken } from './getData.js';
 import { homepage } from './homepage.js';
 import { showLeaderboard } from './leaderboard.js';
-// import { chooseCategory } from './chooseCategory.js';
 import { startQuiz } from './startQuiz.js';
 import { validateUserName } from './tools.js';
+import { loader } from './loader.js';
 
 window.userName = '';
 
 export const startApp = async (id, name) => {
   const categoryID = id;
   const categoryName = name;
+  const token = sessionStorage.getItem('token') 
+  ? JSON.parse(sessionStorage.getItem('token')) 
+  : await getToken();
 
+  loader();
   const questionCount = await getQuestionTotalCount(categoryID);
 
   let questionCountForLevel;
-  switch(window.questionsLevel){
-    case 'hard': 
+  switch (window.questionsLevel) {
+    case 'hard':
       questionCountForLevel = questionCount.total_hard_question_count;
       break;
     case 'medium':
       questionCountForLevel = questionCount.total_medium_question_count;
       break;
-    default: 
+    default:
       questionCountForLevel = questionCount.total_easy_question_count;
   }
 
@@ -35,8 +39,12 @@ export const startApp = async (id, name) => {
         <button class="button game__button--scores">Scores</button>
         <p class="game__questions-quantity">
           <span class="game__category-name">${categoryName}</span>
-          <span class="game__total-questions">Total questions: ${questionCount.total_question_count}</span>
-          <span class="game__total-questions-for-level">Questions for ${window.questionsLevel || 'easy'} level: ${questionCountForLevel}</span>
+          <span class="game__total-questions">Total questions: ${
+            questionCount.total_question_count
+          }</span>
+          <span class="game__total-questions-for-level">Questions for ${
+            window.questionsLevel || 'easy'
+          } level: ${questionCountForLevel}</span>
         </p>
         </div>
         <button class="button game__button--back">Back to categories</button>
@@ -52,13 +60,12 @@ export const startApp = async (id, name) => {
   // const categoryId = chooseCategory();
   // until chooseCategory is finished use id
   console.log(id);
-  const questionList = await getQuestions(categoryID);
+  const questionList = await getQuestions(categoryID, token, questionCountForLevel);
   let errorText;
 
   startButton.addEventListener(
     'click',
     () => {
-      //TODO validate username
       const userInput = document.querySelector('.game__user--name');
       window.userName = userInput.value;
       const isValidUser = validateUserName(window.userName);
@@ -83,7 +90,7 @@ export const startApp = async (id, name) => {
 
   const scoreButton = document.querySelector('.game__button--scores');
   scoreButton.addEventListener('click', () => {
-    showLeaderboard(categoryName);
+    showLeaderboard(categoryName, questionList.length);
   });
 
   const backButton = document.querySelector('.game__button--back');
