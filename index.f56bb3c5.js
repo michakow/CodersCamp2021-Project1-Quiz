@@ -478,6 +478,8 @@ parcelHelpers.export(exports, "getQuestions", ()=>getQuestions
 );
 parcelHelpers.export(exports, "getQuestionTotalCount", ()=>getQuestionTotalCount
 );
+parcelHelpers.export(exports, "getToken", ()=>getToken
+);
 const getCategories = async ()=>{
     try {
         const res = await fetch('https://opentdb.com/api_category.php');
@@ -489,15 +491,20 @@ const getCategories = async ()=>{
         console.error(error);
     }
 };
-const getQuestions = async (categoryID)=>{
+const getQuestions = async (categoryID, token, questionCountForLevel)=>{
     try {
         const questionsLevel = window.questionsLevel || 'easy';
+        const amount = questionCountForLevel < 10 ? questionCountForLevel : 10;
         let path;
         if (categoryID === 999) path = 'https://opentdb.com/api.php?amount=10';
-        else path = `https://opentdb.com/api.php?amount=10&category=${categoryID}&difficulty=${questionsLevel}`;
+        else path = `https://opentdb.com/api.php?amount=${amount}&category=${categoryID}&difficulty=${questionsLevel}&token=${token}`;
         const res = await fetch(path);
         if (!res.ok) throw new Error(res.statusText);
         const data = await res.json();
+        if (data.response_code !== 0) {
+            const newToken = await getToken();
+            return await getQuestions(categoryID, newToken, questionCountForLevel);
+        }
         // sessionStorage.setItem(
         //   'questions',
         //   JSON.stringify(data.results),
@@ -516,12 +523,18 @@ const getQuestionTotalCount = async (categoryID)=>{
     } catch (error) {
         console.error(error);
     }
-}; // export const getQuiz = (categoryID) => {
- //   fetch(`https://opentdb.com/api_count.php?category=${categoryID}`)
- //   .then(res => res.json())
- //   .then(data => console.log(data))
- // }
- // jak zrobić return z tego ?
+};
+const getToken = async ()=>{
+    try {
+        const res = await fetch('https://opentdb.com/api_token.php?command=request');
+        if (!res.ok) throw new Error(res.statusText);
+        const data = await res.json();
+        sessionStorage.setItem('token', JSON.stringify(data.token));
+        return data.token;
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -566,7 +579,7 @@ const homepage = (categories)=>{
     div.innerHTML = `
     <header>
       <nav class="navigation">
-        <a href="/" class="navigation__logo">
+        <a href="https://michakow.github.io/CodersCamp2021-Project1-Quiz/" class="navigation__logo">
           <img
             src=${_quizowniaLogoPngDefault.default}
             alt="logo"
@@ -606,13 +619,13 @@ const homepage = (categories)=>{
     const menuButton = document.querySelector('.navigation__burger');
     const dropdown = document.querySelector('.navigation__dropdown');
     menuButton.addEventListener('click', ()=>{
-        dropdown.classList.toggle("active");
+        dropdown.classList.toggle('active');
     });
     document.querySelectorAll('.navigation__list-item').forEach((item)=>{
         item.addEventListener('click', ()=>{
             window.questionsLevel = item.dataset.level;
             document.querySelector('#level').textContent = window.questionsLevel;
-            dropdown.classList.remove("active");
+            dropdown.classList.remove('active');
         });
     });
     _renderCategoriesJs.renderCategories(categories, '.category__list');
@@ -626,33 +639,96 @@ parcelHelpers.export(exports, "renderCategories", ()=>renderCategories
 var _logoPng = require("/src/images/logo.png");
 var _logoPngDefault = parcelHelpers.interopDefault(_logoPng);
 var _appJs = require("./app.js");
+// const SELECTED_CATEGORY_IDS = [20, 14, 9, 22, 10, 15, 21, 30, 13, 16];
+//Object with ids and matched svg icons
 const SELECTED_CATEGORY_IDS = [
-    20,
-    14,
-    9,
-    22,
-    10,
-    15,
-    21,
-    30,
-    13,
-    16
+    {
+        id: 20,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+    </svg>    
+    `
+    },
+    {
+        id: 14,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+    </svg>    
+  `
+    },
+    {
+        id: 9,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path d="M12 14l9-5-9-5-9 5 9 5z" />
+    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+  </svg>
+  `
+    },
+    {
+        id: 22,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>    
+  `
+    },
+    {
+        id: 10,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+    </svg>    
+  `
+    },
+    {
+        id: 15,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+    </svg>    
+  `
+    },
+    {
+        id: 21,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+    </svg>    
+  `
+    },
+    {
+        id: 30,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+    </svg>    
+  `
+    },
+    {
+        id: 13,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+    </svg>    
+  `
+    },
+    {
+        id: 16,
+        svg: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+    </svg>    
+  `
+    }, 
 ];
 const renderCategories = (categories, parentSelector)=>{
     const parent = document.querySelector(parentSelector);
-    const tiles = categories.filter((category)=>SELECTED_CATEGORY_IDS.includes(category.id)
+    let tiles = [];
+    for (object of SELECTED_CATEGORY_IDS)tiles.push(categories.filter((category)=>Object.values(object).includes(category.id)
     ).map((category)=>`
-            <div class="card category__card" data-id="${category.id}" data-name="${category.name}">
-                <a href="#" class="card__link">
-                <img
-                    src="${_logoPngDefault.default}"
-                    alt="category"
-                    class="card__image"
-                />
-                <h2 class="card__name">${category.name}</h2>
-                </a>
-            </div>`
-    );
+                <div class="card category__card" data-id="${category.id}" data-name="${category.name}">
+                    <a href="#" class="card__link">
+                    <div
+                    class="card__image">${object.svg}
+                    </div>
+                    <h2 class="card__name">${category.name}</h2>
+                    </a>
+                </div>`
+    ));
     parent.innerHTML = tiles.join('');
     //temporary solution
     document.querySelectorAll('.category__card').forEach((card)=>{
@@ -707,13 +783,15 @@ parcelHelpers.export(exports, "startApp", ()=>startApp
 var _getDataJs = require("./getData.js");
 var _homepageJs = require("./homepage.js");
 var _leaderboardJs = require("./leaderboard.js");
-// import { chooseCategory } from './chooseCategory.js';
 var _startQuizJs = require("./startQuiz.js");
 var _toolsJs = require("./tools.js");
+var _loaderJs = require("./loader.js");
 window.userName = '';
 const startApp = async (id, name)=>{
     const categoryID = id;
     const categoryName = name;
+    const token = sessionStorage.getItem('token') ? JSON.parse(sessionStorage.getItem('token')) : await _getDataJs.getToken();
+    _loaderJs.loader();
     const questionCount = await _getDataJs.getQuestionTotalCount(categoryID);
     let questionCountForLevel;
     switch(window.questionsLevel){
@@ -749,10 +827,9 @@ const startApp = async (id, name)=>{
     // const categoryId = chooseCategory();
     // until chooseCategory is finished use id
     console.log(id);
-    const questionList = await _getDataJs.getQuestions(categoryID);
+    const questionList = await _getDataJs.getQuestions(categoryID, token, questionCountForLevel);
     let errorText;
     startButton.addEventListener('click', ()=>{
-        //TODO validate username
         const userInput = document.querySelector('.game__user--name');
         window.userName = userInput.value;
         const isValidUser = _toolsJs.validateUserName(window.userName);
@@ -767,7 +844,7 @@ const startApp = async (id, name)=>{
     }, false);
     const scoreButton = document.querySelector('.game__button--scores');
     scoreButton.addEventListener('click', ()=>{
-        _leaderboardJs.showLeaderboard(categoryName);
+        _leaderboardJs.showLeaderboard(categoryName, questionList.length);
     });
     const backButton = document.querySelector('.game__button--back');
     backButton.addEventListener('click', ()=>{
@@ -775,15 +852,16 @@ const startApp = async (id, name)=>{
     });
 };
 
-},{"./getData.js":"9D6x9","./homepage.js":"aFNXV","./leaderboard.js":"khUYO","./startQuiz.js":"bvVdz","./tools.js":"6HJIh","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"khUYO":[function(require,module,exports) {
+},{"./getData.js":"9D6x9","./homepage.js":"aFNXV","./leaderboard.js":"khUYO","./startQuiz.js":"bvVdz","./tools.js":"6HJIh","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./loader.js":"jqHkM"}],"khUYO":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "showLeaderboard", ()=>showLeaderboard
 );
 var _homepage = require("./homepage");
-const showLeaderboard = (category)=>{
+const showLeaderboard = (category, questionsLength)=>{
     const leaderboard = !localStorage.getItem('leaderboard') === true ? false : JSON.parse(localStorage.getItem('leaderboard')).find((element)=>element.categoryName === category
     ) || false;
+    const quizLevel = window.questionsLevel || 'easy';
     //CreateElements - clear section and build new view
     const section = document.querySelector('section');
     section.innerHTML = '';
@@ -795,14 +873,16 @@ const showLeaderboard = (category)=>{
     const scoreDashboardTitle = document.createElement('h3');
     scoreDashboardTitle.className = 'score-dashboard__title';
     const categoryNameFormatted = leaderboard.categoryName ? leaderboard.categoryName[0].toUpperCase() + leaderboard.categoryName.slice(1) : category[0].toUpperCase() + category.slice(1);
-    scoreDashboardTitle.appendChild(document.createTextNode(`Score dashboard for ${categoryNameFormatted}`));
+    scoreDashboardTitle.appendChild(document.createTextNode(`Score dashboard for ${categoryNameFormatted} (${quizLevel})`));
     const scoreDashboardScoreList = document.createElement('ul');
     scoreDashboardScoreList.className = 'score-dashboard__player-score-list';
-    scoreDashboardScoreList.innerHTML = leaderboard.players ? leaderboard.players.map((player)=>`<li class="score-dashboard__player-score">
-      <span class="score-dashboard__game-title">${player.name}</span>
-      <span class="score-dashboard__game-title">${player.score}/10</span>
-    </li>`
-    ).join('') : '<p>Leaderboard for this category is empty</p>';
+    scoreDashboardScoreList.innerHTML = !leaderboard.players ? '<p>Leaderboard for this category is empty</p>' : leaderboard.players.filter((player)=>player.level === quizLevel
+    ).length === 0 ? '<p>Leaderboard for this level is empty</p>' : leaderboard.players.filter((player)=>player.level === quizLevel
+    ).map((player)=>`<li class="score-dashboard__player-score">
+              <span class="score-dashboard__game-title">${player.name}</span>
+              <span class="score-dashboard__game-title">${player.score}/${questionsLength}</span>
+            </li>`
+    ).join('');
     const categoriesButton = document.createElement('button');
     categoriesButton.className = 'button finish__button--back';
     categoriesButton.appendChild(document.createTextNode('Back to categories'));
@@ -836,13 +916,13 @@ const startQuiz = async (questionList, categoryName)=>{
   `;
     const questionLength = questionList.length;
     window.points = 0;
-    const timer = _timer.startTimer(window.userName, categoryName);
+    const timer = _timer.startTimer(window.userName, categoryName, questionLength);
     for (let [id, question] of questionList.entries()){
         const answer = await _renderQuestion.renderQuestion(id, question, questionLength);
         if (answer) window.points++;
         if (id === questionLength - 1) {
             _timer.stopTimer(timer);
-            return _finishQuiz.finishQuiz(window.userName, window.points, categoryName);
+            return _finishQuiz.finishQuiz(window.userName, window.points, categoryName, questionLength);
         }
     }
 };
@@ -951,10 +1031,11 @@ parcelHelpers.export(exports, "finishQuiz", ()=>finishQuiz
 );
 var _homepage = require("./homepage");
 var _leaderboard = require("./leaderboard");
-const finishQuiz = (player, score = 0, category)=>{
+const finishQuiz = (player, score = 0, category, questionsLength)=>{
     const playerName = player;
     const playerScore = score;
     const categoryName = category;
+    const quizLevel = window.questionsLevel || 'easy';
     //CreateElements - clear section and build new view
     const div = document.querySelector('#app');
     div.innerHTML = `<section></section>`;
@@ -977,7 +1058,7 @@ const finishQuiz = (player, score = 0, category)=>{
     scoreHeading.appendChild(document.createTextNode('your score'));
     const scoreSpan = document.createElement('span');
     scoreSpan.className = 'finish__score';
-    scoreSpan.appendChild(document.createTextNode(`${playerScore}/10`));
+    scoreSpan.appendChild(document.createTextNode(`${playerScore}/${questionsLength}`));
     scoreResult.appendChild(scoreHeading);
     scoreResult.appendChild(scoreSpan);
     const buttonsDiv = document.createElement('div');
@@ -999,7 +1080,7 @@ const finishQuiz = (player, score = 0, category)=>{
         _homepage.homepage(JSON.parse(sessionStorage.getItem('categories')));
     });
     scoreboardButton.addEventListener('click', ()=>{
-        _leaderboard.showLeaderboard(categoryName);
+        _leaderboard.showLeaderboard(categoryName, questionsLength);
     });
     //LocalStorage - save player score
     const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
@@ -1007,14 +1088,16 @@ const finishQuiz = (player, score = 0, category)=>{
     )) leaderboard.find((element)=>element.categoryName === categoryName
     ).players.push({
         name: playerName,
-        score: playerScore
+        score: playerScore,
+        level: quizLevel
     });
     else leaderboard.push({
         categoryName,
         players: [
             {
                 name: playerName,
-                score: playerScore
+                score: playerScore,
+                level: quizLevel
             }, 
         ]
     });
@@ -1029,7 +1112,7 @@ parcelHelpers.export(exports, "startTimer", ()=>startTimer
 parcelHelpers.export(exports, "stopTimer", ()=>stopTimer
 );
 var _finishQuizJs = require("./finishQuiz.js");
-const startTimer = (userName, categoryName)=>{
+const startTimer = (userName, categoryName, questionLength)=>{
     const timer = document.querySelector('.questions__timer');
     const questions = document.querySelector('.questions');
     timer.textContent = '';
@@ -1047,7 +1130,7 @@ const startTimer = (userName, categoryName)=>{
                 timer.textContent = `Time left: 0m 0s`;
                 timer.style.display = 'none';
                 questions.remove();
-                _finishQuizJs.finishQuiz(userName, window.points, categoryName);
+                _finishQuizJs.finishQuiz(userName, window.points, categoryName, questionLength);
             }
         }, 1000);
         return interval;
@@ -1061,10 +1144,7 @@ const stopTimer = (timer)=>{
     clearInterval(timer);
 };
 
-},{"./finishQuiz.js":"25Mjy","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gIgyC":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('1PCHQ') + "quizownia-logo.44e2add5.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"jqHkM":[function(require,module,exports) {
+},{"./finishQuiz.js":"25Mjy","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jqHkM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "loader", ()=>loader1
@@ -1075,6 +1155,9 @@ const loader1 = ()=>{
     parent.innerHTML = loader;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["8XeeD","8Z0aK"], "8Z0aK", "parcelRequiredcee")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gIgyC":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('1PCHQ') + "quizownia-logo.44e2add5.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}]},["8XeeD","8Z0aK"], "8Z0aK", "parcelRequiredcee")
 
 //# sourceMappingURL=index.f56bb3c5.js.map

@@ -439,7 +439,7 @@ a {
 .category__card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   margin: 0 auto;
   transition: all 0.2s;
 }
@@ -450,9 +450,15 @@ a {
   max-width: 200px;
 }
 .card__image {
-  max-width: 200px;
+  width: 200px;
+  height: 200px;
+  align-items: flex-end;
   margin-bottom: 13px;
   border-radius: 25px;
+  object-fit: contain;
+  padding: 20px;
+  background-color: #e7ddc1;
+  color: #434343;
 }
 .card__name {
   font-size: 25px;
@@ -597,7 +603,7 @@ a {
   .finish__score-group h3,
 .finish__score-group span {
     text-align: center;
-    font-size: 35px;
+    font-size: 40px;
   }
   .finish__button--scoreboard {
     margin-top: 30px;
