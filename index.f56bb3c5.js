@@ -618,14 +618,16 @@ const homepage = (categories)=>{
   `;
     const menuButton = document.querySelector('.navigation__burger');
     const dropdown = document.querySelector('.navigation__dropdown');
-    menuButton.addEventListener('click', ()=>{
-        dropdown.classList.toggle('active');
-    });
+    console.log(menuButton);
+    console.log(dropdown);
+    // menuButton.addEventListener('click', () => {
+    //   dropdown.classList.toggle('active');
+    // });
     document.querySelectorAll('.navigation__list-item').forEach((item)=>{
         item.addEventListener('click', ()=>{
             window.questionsLevel = item.dataset.level;
             document.querySelector('#level').textContent = window.questionsLevel;
-            dropdown.classList.remove('active');
+        // dropdown.classList.remove('active');
         });
     });
     _renderCategoriesJs.renderCategories(categories, '.category__list');
