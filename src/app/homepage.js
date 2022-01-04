@@ -54,17 +54,21 @@ export const homepage = (categories) => {
 
   const menuButton = document.querySelector('.navigation__burger');
   const dropdown = document.querySelector('.navigation__dropdown');
-  menuButton.addEventListener('click', () => {
+  menuButton.addEventListener('click', (event) => {
     dropdown.classList.toggle('active');
+    event.stopPropagation();
   });
 
   document.querySelectorAll('.navigation__list-item').forEach((item) => {
-    item.addEventListener('click', () => {
+    item.addEventListener('click', (event) => {
       window.questionsLevel = item.dataset.level;
       document.querySelector('#level').textContent = window.questionsLevel;
       dropdown.classList.remove('active');
+      event.stopPropagation();
     });
   });
+  dropdown.addEventListener('click', (event) => event.stopPropagation());
+  document.addEventListener('click', () => dropdown.classList.remove('active'));
 
   renderCategories(categories, '.category__list');
 };
