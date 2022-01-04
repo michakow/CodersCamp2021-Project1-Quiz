@@ -11,7 +11,9 @@
     "build": "parcel build src/index.html --public-url ./",
     "start": "parcel -p 8080 src/index.html",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "lint": "eslint --ext .js src",
+    "format": "prettier --ignore-path .gitignore --write \"src/**/*.+(js|json)\""
   },
   "repository": {
     "type": "git",

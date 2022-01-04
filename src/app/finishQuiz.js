@@ -1,5 +1,5 @@
-import { homepage } from "./homepage";
-import { showLeaderboard } from "./leaderboard";
+import { homepage } from './homepage';
+import { showLeaderboard } from './leaderboard';
 
 export const finishQuiz = (player, score = 0, category, questionsLength) => {
   const playerName = player;
@@ -36,7 +36,9 @@ export const finishQuiz = (player, score = 0, category, questionsLength) => {
   scoreHeading.appendChild(document.createTextNode('your score'));
   const scoreSpan = document.createElement('span');
   scoreSpan.className = 'finish__score';
-  scoreSpan.appendChild(document.createTextNode(`${playerScore}/${questionsLength}`));
+  scoreSpan.appendChild(
+    document.createTextNode(`${playerScore}/${questionsLength}`),
+  );
 
   scoreResult.appendChild(scoreHeading);
   scoreResult.appendChild(scoreSpan);
