@@ -25,9 +25,7 @@ export const homepage = (categories) => {
             <rect y="60" width="100" height="20" fill="#4d70ff"></rect>
           </svg>
           <div class="navigation__dropdown">
-            <p class="navigation__title">Actual difficulty level: <span id="level" class="navigation__level-name">${
-              window.questionsLevel || 'Easy'
-            }</span></p>
+            <p class="navigation__title">Set quiz level:</p>
             <ul class="navigation__level-list">
               <li class="navigation__list-item" data-level="easy">Easy</li>
               <li class="navigation__list-item" data-level="medium">Medium</li>
@@ -35,6 +33,12 @@ export const homepage = (categories) => {
             </ul>
           </div>
         </div>
+        <p class="navigation__level-name-area">
+          Level:
+          <span id="level" class="navigation__level-name">${
+            window.questionsLevel || 'Easy'
+          }<span>
+        </p>
       </nav>
     </header>
 
@@ -48,17 +52,21 @@ export const homepage = (categories) => {
 
   const menuButton = document.querySelector('.navigation__burger');
   const dropdown = document.querySelector('.navigation__dropdown');
-  menuButton.addEventListener('click', () => {
+  menuButton.addEventListener('click', (event) => {
     dropdown.classList.toggle('active');
+    event.stopPropagation();
   });
 
   document.querySelectorAll('.navigation__list-item').forEach((item) => {
-    item.addEventListener('click', () => {
+    item.addEventListener('click', (event) => {
       window.questionsLevel = item.dataset.level;
       document.querySelector('#level').textContent = window.questionsLevel;
       dropdown.classList.remove('active');
+      event.stopPropagation();
     });
   });
+  dropdown.addEventListener('click', (event) => event.stopPropagation());
+  document.addEventListener('click', () => dropdown.classList.remove('active'));
 
   renderCategories(categories, '.category__list');
 };
