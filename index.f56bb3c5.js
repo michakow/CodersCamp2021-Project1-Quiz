@@ -618,16 +618,14 @@ const homepage = (categories)=>{
   `;
     const menuButton = document.querySelector('.navigation__burger');
     const dropdown = document.querySelector('.navigation__dropdown');
-    console.log(menuButton);
-    console.log(dropdown);
-    // menuButton.addEventListener('click', () => {
-    //   dropdown.classList.toggle('active');
-    // });
+    menuButton.addEventListener('click', ()=>{
+        dropdown.classList.toggle('active');
+    });
     document.querySelectorAll('.navigation__list-item').forEach((item)=>{
         item.addEventListener('click', ()=>{
             window.questionsLevel = item.dataset.level;
             document.querySelector('#level').textContent = window.questionsLevel;
-        // dropdown.classList.remove('active');
+            dropdown.classList.remove('active');
         });
     });
     _renderCategoriesJs.renderCategories(categories, '.category__list');
@@ -854,7 +852,7 @@ const startApp = async (id, name)=>{
     });
 };
 
-},{"./getData.js":"9D6x9","./homepage.js":"aFNXV","./leaderboard.js":"khUYO","./startQuiz.js":"bvVdz","./tools.js":"6HJIh","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./loader.js":"jqHkM"}],"khUYO":[function(require,module,exports) {
+},{"./getData.js":"9D6x9","./homepage.js":"aFNXV","./leaderboard.js":"khUYO","./startQuiz.js":"bvVdz","./tools.js":"6HJIh","./loader.js":"jqHkM","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"khUYO":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "showLeaderboard", ()=>showLeaderboard
