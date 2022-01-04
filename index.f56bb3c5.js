@@ -464,7 +464,6 @@ var _homepageJs = require("./homepage.js");
 var _loaderJs = require("./loader.js");
 window.onload = async ()=>{
     _loaderJs.loader();
-    // Here goes logic:
     const categories = sessionStorage.getItem('categories') ? JSON.parse(sessionStorage.getItem('categories')) : await _getDataJs.getCategories();
     _homepageJs.homepage(categories);
 };
@@ -505,10 +504,6 @@ const getQuestions = async (categoryID, token, questionCountForLevel)=>{
             const newToken = await getToken();
             return await getQuestions(categoryID, newToken, questionCountForLevel);
         }
-        // sessionStorage.setItem(
-        //   'questions',
-        //   JSON.stringify(data.results),
-        // );
         return data.results;
     } catch (error) {
         console.error(error);
@@ -636,10 +631,9 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "renderCategories", ()=>renderCategories
 );
-var _logoPng = require("/src/images/logo.png");
-var _logoPngDefault = parcelHelpers.interopDefault(_logoPng);
 var _appJs = require("./app.js");
 const renderCategories = (categories, parentSelector)=>{
+    //Object with ids and matched svg icons
     const SELECTED_CATEGORY_IDS = [
         {
             id: 20,
@@ -716,7 +710,7 @@ const renderCategories = (categories, parentSelector)=>{
     ];
     const parent = document.querySelector(parentSelector);
     let tiles = [];
-    for (object of SELECTED_CATEGORY_IDS)tiles.push(categories.filter((category)=>Object.values(object).includes(category.id)
+    for (const object of SELECTED_CATEGORY_IDS)tiles.push(categories.filter((category)=>Object.values(object).includes(category.id)
     ).map((category)=>`
                 <div class="card category__card" data-id="${category.id}" data-name="${category.name}">
                     <a href="#" class="card__link">
@@ -728,52 +722,13 @@ const renderCategories = (categories, parentSelector)=>{
                 </div>`
     ));
     parent.innerHTML = tiles.join('');
-    //temporary solution
     document.querySelectorAll('.category__card').forEach((card)=>{
         card.addEventListener('click', ()=>_appJs.startApp(card.dataset.id, card.dataset.name)
         );
     });
 };
 
-},{"/src/images/logo.png":"30UTM","./app.js":"d9j9x","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"30UTM":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('1PCHQ') + "logo.502ce92a.png" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
-"use strict";
-var bundleURL = {
-};
-function getBundleURLCached(id) {
-    var value = bundleURL[id];
-    if (!value) {
-        value = getBundleURL();
-        bundleURL[id] = value;
-    }
-    return value;
-}
-function getBundleURL() {
-    try {
-        throw new Error();
-    } catch (err) {
-        var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
-        if (matches) // The first two stack frames will be this function and getBundleURLCached.
-        // Use the 3rd one, which will be a runtime in the original bundle.
-        return getBaseURL(matches[2]);
-    }
-    return '/';
-}
-function getBaseURL(url) {
-    return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
-} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
-function getOrigin(url) {
-    var matches = ('' + url).match(/(https?|file|ftp):\/\/[^/]+/);
-    if (!matches) throw new Error('Origin not found');
-    return matches[0];
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-exports.getOrigin = getOrigin;
-
-},{}],"d9j9x":[function(require,module,exports) {
+},{"./app.js":"d9j9x","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"d9j9x":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "startApp", ()=>startApp
@@ -821,10 +776,6 @@ const startApp = async (id, name)=>{
     </section>
   `;
     const startButton = document.getElementsByClassName('game__button--start-quiz')[0];
-    // TODO add chooseCategory function here
-    // const categoryId = chooseCategory();
-    // until chooseCategory is finished use id
-    console.log(id);
     const questionList = await _getDataJs.getQuestions(categoryID, token, questionCountForLevel);
     let errorText;
     startButton.addEventListener('click', ()=>{
@@ -1156,6 +1107,41 @@ const loader1 = ()=>{
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"gIgyC":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('1PCHQ') + "quizownia-logo.44e2add5.png" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"chiK4"}]},["8XeeD","8Z0aK"], "8Z0aK", "parcelRequiredcee")
+},{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
+"use strict";
+var bundleURL = {
+};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return '/';
+}
+function getBaseURL(url) {
+    return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ('' + url).match(/(https?|file|ftp):\/\/[^/]+/);
+    if (!matches) throw new Error('Origin not found');
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}]},["8XeeD","8Z0aK"], "8Z0aK", "parcelRequiredcee")
 
 //# sourceMappingURL=index.f56bb3c5.js.map
