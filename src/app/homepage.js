@@ -6,7 +6,7 @@ export const homepage = (categories) => {
   div.innerHTML = `
     <header>
       <nav class="navigation">
-        <a href="/" class="navigation__logo">
+        <a href="https://michakow.github.io/CodersCamp2021-Project1-Quiz/" class="navigation__logo">
           <img
             src=${logo}
             alt="logo"
@@ -25,7 +25,9 @@ export const homepage = (categories) => {
             <rect y="60" width="100" height="20" fill="#4d70ff"></rect>
           </svg>
           <div class="navigation__dropdown">
-            <p class="navigation__title">Actual difficulty level: <span id="level" class="navigation__level-name">${window.questionsLevel || 'Easy'}</span></p>
+            <p class="navigation__title">Actual difficulty level: <span id="level" class="navigation__level-name">${
+              window.questionsLevel || 'Easy'
+            }</span></p>
             <ul class="navigation__level-list">
               <li class="navigation__list-item" data-level="easy">Easy</li>
               <li class="navigation__list-item" data-level="medium">Medium</li>
@@ -47,14 +49,14 @@ export const homepage = (categories) => {
   const menuButton = document.querySelector('.navigation__burger');
   const dropdown = document.querySelector('.navigation__dropdown');
   menuButton.addEventListener('click', () => {
-    dropdown.classList.toggle("active");
+    dropdown.classList.toggle('active');
   });
 
-  document.querySelectorAll('.navigation__list-item').forEach(item => {
+  document.querySelectorAll('.navigation__list-item').forEach((item) => {
     item.addEventListener('click', () => {
       window.questionsLevel = item.dataset.level;
       document.querySelector('#level').textContent = window.questionsLevel;
-      dropdown.classList.remove("active");
+      dropdown.classList.remove('active');
     });
   });
 
