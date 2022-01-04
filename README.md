@@ -80,25 +80,25 @@ Aplikacja będzie dostępna pod adresem **_localhost:8080_**
 
 ### Zrealizowane wymagania projektu
 
-- zmienne
-- operatory porównania
-- pętle
-- obiekty, atrybuty
-- warunki
-- funkcje
-- operatory logiczne
-- tablice
-- iteracja i/lub rekurencja :white_check_mark:
-- console :heavy_check_mark: :x:
-- return :heavy_multiplication_x:
-- "===" vs "=="
-- integracja z zewnętrznym REST API
-- interakcja z domem
-- odwoływanie się do elementów DOM z JavaScript
-- zmiana stylów z poziomu JSa
-- zmiana zawartości HTML z poziomu JSa
-- animacje
-- zewnętrzne biblioteki
-- async await i/lub Promise
-- funkcje callback
-- metody HTTP
+- zmienne :heavy_check_mark:
+- operatory porównania :heavy_check_mark:
+- pętle :heavy_check_mark:
+- obiekty, atrybuty :heavy_check_mark:
+- warunki :heavy_check_mark:
+- funkcje :heavy_check_mark:
+- operatory logiczne :heavy_check_mark:
+- tablice :heavy_check_mark:
+- iteracja i/lub rekurencja :heavy_check_mark:
+- console :heavy_check_mark:
+- return :heavy_check_mark:
+- "===" vs "==" :heavy_check_mark:
+- integracja z zewnętrznym REST API :heavy_check_mark:
+- interakcja z domem :heavy_check_mark:
+- odwoływanie się do elementów DOM z JavaScript :heavy_check_mark:
+- zmiana stylów z poziomu JSa :heavy_check_mark:
+- zmiana zawartości HTML z poziomu JSa :heavy_check_mark:
+- animacje :heavy_check_mark:
+- zewnętrzne biblioteki :heavy_check_mark:
+- async await i/lub Promise :heavy_check_mark:
+- funkcje callback :heavy_check_mark:
+- metody HTTP :heavy_check_mark:
