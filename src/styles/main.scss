@@ -3,4 +3,10 @@
 @use './fonts';
 @use './settings';
 @use './interface';
-@use './component';
+@use './components/navigation';
+@use './components/category';
+@use './components/questions';
+@use './components/finish';
+@use './components/game';
+@use './components/score-dashboard';
+@use './components/loader';
