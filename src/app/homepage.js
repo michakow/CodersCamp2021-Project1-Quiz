@@ -25,9 +25,7 @@ export const homepage = (categories) => {
             <rect y="60" width="100" height="20" fill="#4d70ff"></rect>
           </svg>
           <div class="navigation__dropdown">
-            <p class="navigation__title">Actual difficulty level: <span id="level" class="navigation__level-name">${
-              window.questionsLevel || 'Easy'
-            }</span></p>
+            <p class="navigation__title">Set quiz level:</p>
             <ul class="navigation__level-list">
               <li class="navigation__list-item" data-level="easy">Easy</li>
               <li class="navigation__list-item" data-level="medium">Medium</li>
@@ -35,6 +33,14 @@ export const homepage = (categories) => {
             </ul>
           </div>
         </div>
+        <div class="navigation__level-info">
+          <p class="navigation__level-name-area">
+            Actual quiz level:
+            <span id="level" class="navigation__level-name">${window.questionsLevel || 'Easy'}<span>
+          </p>
+          <div class="navigation__level-line"></div>
+        </div>
+
       </nav>
     </header>
 

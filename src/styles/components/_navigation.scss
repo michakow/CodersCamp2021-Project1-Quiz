@@ -39,8 +39,28 @@
     font-size: 15px;
   }
 
+  &__level-info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px 0;
+  }
+
+  &__level-name-area {
+    margin-right: 20px;
+    font-size: 15px;
+    width: 230px;
+  }
+
   &__level-name {
     text-transform: capitalize;
+  }
+
+  &__level-line {
+    height: 1px;
+    width: 100%;
+    margin-top: 4px;
+    background-color: #000;
   }
 
   &__level-list{
