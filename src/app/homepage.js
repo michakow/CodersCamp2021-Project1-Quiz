@@ -35,7 +35,9 @@ export const homepage = (categories) => {
         </div>
         <p class="navigation__level-name-area">
           Level:
-          <span id="level" class="navigation__level-name">${window.questionsLevel || 'Easy'}<span>
+          <span id="level" class="navigation__level-name">${
+            window.questionsLevel || 'Easy'
+          }<span>
         </p>
       </nav>
     </header>
