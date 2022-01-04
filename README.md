@@ -18,7 +18,7 @@ Zachęcamy do odwiedzenia profili członków zespołu, w celu zapoznania się z 
 
 ## Demo
 
-Zobaczyć efekt naszej pracy i sprawdzić swoją wiedzę w różnych kategoriach możesz [TUTAJ](https://michakow.github.io/CodersCamp2021-Project1-Quiz)
+Zobaczyć efekt naszej pracy i sprawdzić swoją wiedzę w różnych kategoriach możesz [TUTAJ](https://michakow.github.io/CodersCamp2021-Project1-Quiz).
 
 ## O projekcie słów kilka
 ### Zmiany względem proponowanego projektu
@@ -54,6 +54,15 @@ Dla każdej kategorii możemy sprawdzić wszystkie wyniki graczy biorących udzi
 - SessionStorage oraz LocalStorage
 - Fetch API
 
+### API
+
+W projekcie zostało wykorzystane zewnętrzne API od [Open Trivia Database](https://opentdb.com/).
+
+Z API pobierane są:
+- Lista, wybranych przez zespół, kategorii, które zostają następnie zapisane w SessionStorage, aby ograniczyć liczbę requestów
+- Pytania dla wybranej przez użytkownika kategorii
+- Liczba wszystkich pytań łącznie dla wybranej kategorii, jak i dla konkretnego poziomu trudności Quizu
+- Token sesji, który odpowiada za niepowtarzalność pytań oraz obsługę błędnego requestu, który również zostaje zapisany w SessionStorage 
 
 ### Uruchomienie projektu
 
@@ -73,9 +82,9 @@ Aplikacja będzie dostępna pod adresem ***localhost:8080***
 - funkcje
 - operatory logiczne
 - tablice
-- iteracja i/lub rekurencja
-- console
-- return
+- iteracja i/lub rekurencja :white_check_mark:
+- console :heavy_check_mark: :x:
+- return :heavy_multiplication_x:
 - "===" vs "=="
 - integracja z zewnętrznym REST API
 - interakcja z domem
