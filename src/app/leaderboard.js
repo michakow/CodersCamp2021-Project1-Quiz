@@ -1,11 +1,15 @@
 import { homepage } from './homepage';
 
 export const showLeaderboard = (category, questionsLength) => {
-  const leaderboard = !localStorage.getItem('leaderboard') === true ? false 
-  : JSON.parse(localStorage.getItem('leaderboard')).find(element => element.categoryName === category) || false;
+  const leaderboard =
+    !localStorage.getItem('leaderboard') === true
+      ? false
+      : JSON.parse(localStorage.getItem('leaderboard')).find(
+          (element) => element.categoryName === category,
+        ) || false;
 
   const quizLevel = window.questionsLevel || 'easy';
-  
+
   //CreateElements - clear section and build new view
   const section = document.querySelector('section');
   section.innerHTML = '';
@@ -24,7 +28,9 @@ export const showLeaderboard = (category, questionsLength) => {
       leaderboard.categoryName.slice(1)
     : category[0].toUpperCase() + category.slice(1);
   scoreDashboardTitle.appendChild(
-    document.createTextNode(`Score dashboard for ${categoryNameFormatted} (${quizLevel})`),
+    document.createTextNode(
+      `Score dashboard for ${categoryNameFormatted} (${quizLevel})`,
+    ),
   );
 
   const scoreDashboardScoreList = document.createElement('ul');
@@ -32,9 +38,11 @@ export const showLeaderboard = (category, questionsLength) => {
 
   scoreDashboardScoreList.innerHTML = !leaderboard.players
     ? '<p>Leaderboard for this category is empty</p>'
-    : (leaderboard.players.filter(player => player.level === quizLevel)).length === 0
-      ? '<p>Leaderboard for this level is empty</p>'
-      : leaderboard.players.filter(player => player.level === quizLevel)
+    : leaderboard.players.filter((player) => player.level === quizLevel)
+        .length === 0
+    ? '<p>Leaderboard for this level is empty</p>'
+    : leaderboard.players
+        .filter((player) => player.level === quizLevel)
         .map(
           (player) =>
             `<li class="score-dashboard__player-score">

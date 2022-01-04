@@ -10,9 +10,9 @@ window.userName = '';
 export const startApp = async (id, name) => {
   const categoryID = id;
   const categoryName = name;
-  const token = sessionStorage.getItem('token') 
-  ? JSON.parse(sessionStorage.getItem('token')) 
-  : await getToken();
+  const token = sessionStorage.getItem('token')
+    ? JSON.parse(sessionStorage.getItem('token'))
+    : await getToken();
 
   loader();
   const questionCount = await getQuestionTotalCount(categoryID);
@@ -56,11 +56,11 @@ export const startApp = async (id, name) => {
     'game__button--start-quiz',
   )[0];
 
-  // TODO add chooseCategory function here
-  // const categoryId = chooseCategory();
-  // until chooseCategory is finished use id
-  console.log(id);
-  const questionList = await getQuestions(categoryID, token, questionCountForLevel);
+  const questionList = await getQuestions(
+    categoryID,
+    token,
+    questionCountForLevel,
+  );
   let errorText;
 
   startButton.addEventListener(

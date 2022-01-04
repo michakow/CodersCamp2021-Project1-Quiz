@@ -13,10 +13,14 @@ export const getCategories = async () => {
   }
 };
 
-export const getQuestions = async (categoryID, token, questionCountForLevel) => {
+export const getQuestions = async (
+  categoryID,
+  token,
+  questionCountForLevel,
+) => {
   try {
     const questionsLevel = window.questionsLevel || 'easy';
-    const amount = questionCountForLevel < 10 ? questionCountForLevel : 10; 
+    const amount = questionCountForLevel < 10 ? questionCountForLevel : 10;
     let path;
     if (categoryID === 999) {
       path = 'https://opentdb.com/api.php?amount=10';
@@ -29,14 +33,10 @@ export const getQuestions = async (categoryID, token, questionCountForLevel) => 
 
     const data = await res.json();
 
-    if(data.response_code !== 0) {
+    if (data.response_code !== 0) {
       const newToken = await getToken();
       return await getQuestions(categoryID, newToken, questionCountForLevel);
-    } 
-    // sessionStorage.setItem(
-    //   'questions',
-    //   JSON.stringify(data.results),
-    // );
+    }
     return data.results;
   } catch (error) {
     console.error(error);
@@ -45,7 +45,9 @@ export const getQuestions = async (categoryID, token, questionCountForLevel) => 
 
 export const getQuestionTotalCount = async (categoryID) => {
   try {
-    const res = await fetch(`https://opentdb.com/api_count.php?category=${categoryID}`);
+    const res = await fetch(
+      `https://opentdb.com/api_count.php?category=${categoryID}`,
+    );
 
     if (!res.ok) throw new Error(res.statusText);
     const data = await res.json();
@@ -55,22 +57,14 @@ export const getQuestionTotalCount = async (categoryID) => {
   }
 };
 
-// export const getQuiz = (categoryID) => {
-//   fetch(`https://opentdb.com/api_count.php?category=${categoryID}`)
-//   .then(res => res.json())
-//   .then(data => console.log(data))
-// }
-// jak zrobić return z tego ?
-
 export const getToken = async () => {
   try {
-    const res = await fetch('https://opentdb.com/api_token.php?command=request');
+    const res = await fetch(
+      'https://opentdb.com/api_token.php?command=request',
+    );
     if (!res.ok) throw new Error(res.statusText);
     const data = await res.json();
-    sessionStorage.setItem(
-      'token',
-      JSON.stringify(data.token),
-    );
+    sessionStorage.setItem('token', JSON.stringify(data.token));
     return data.token;
   } catch (error) {
     console.error(error);

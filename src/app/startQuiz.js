@@ -23,7 +23,12 @@ export const startQuiz = async (questionList, categoryName) => {
 
     if (id === questionLength - 1) {
       stopTimer(timer);
-      return finishQuiz(window.userName, window.points, categoryName, questionLength);
+      return finishQuiz(
+        window.userName,
+        window.points,
+        categoryName,
+        questionLength,
+      );
     }
   }
 };
