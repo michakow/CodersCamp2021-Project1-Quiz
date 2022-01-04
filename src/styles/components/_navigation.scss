@@ -2,6 +2,7 @@
 
 .navigation {
   display: flex;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
@@ -39,28 +40,17 @@
     font-size: 15px;
   }
 
-  &__level-info {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 8px 0;
-  }
-
   &__level-name-area {
-    margin-right: 20px;
-    font-size: 15px;
-    width: 230px;
+    position: absolute;
+    top: 50%;
+    right: 80px;
+    font-size: 19px;
+    width: 145px;
+    transform: translateY(-50%);
   }
 
   &__level-name {
-    text-transform: capitalize;
-  }
-
-  &__level-line {
-    height: 1px;
-    width: 100%;
-    margin-top: 4px;
-    background-color: #000;
+    text-transform: uppercase;
   }
 
   &__level-list{
