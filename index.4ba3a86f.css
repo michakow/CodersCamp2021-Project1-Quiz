@@ -409,25 +409,8 @@ a {
 .navigation__title {
   font-size: 15px;
 }
-.navigation__level-info {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 8px 0;
-}
-.navigation__level-name-area {
-  margin-right: 20px;
-  font-size: 15px;
-  width: 230px;
-}
 .navigation__level-name {
   text-transform: capitalize;
-}
-.navigation__level-line {
-  height: 1px;
-  width: 100%;
-  margin-top: 4px;
-  background-color: #000;
 }
 .navigation__level-list {
   list-style: none;
