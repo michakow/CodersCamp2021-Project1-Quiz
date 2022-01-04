@@ -5,7 +5,6 @@ import { loader } from './loader.js';
 window.onload = async () => {
   loader();
 
-  // Here goes logic:
   const categories = sessionStorage.getItem('categories')
     ? JSON.parse(sessionStorage.getItem('categories'))
     : await getCategories();

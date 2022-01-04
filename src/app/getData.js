@@ -33,10 +33,6 @@ export const getQuestions = async (categoryID, token, questionCountForLevel) => 
       const newToken = await getToken();
       return await getQuestions(categoryID, newToken, questionCountForLevel);
     } 
-    // sessionStorage.setItem(
-    //   'questions',
-    //   JSON.stringify(data.results),
-    // );
     return data.results;
   } catch (error) {
     console.error(error);
@@ -54,13 +50,6 @@ export const getQuestionTotalCount = async (categoryID) => {
     console.error(error);
   }
 };
-
-// export const getQuiz = (categoryID) => {
-//   fetch(`https://opentdb.com/api_count.php?category=${categoryID}`)
-//   .then(res => res.json())
-//   .then(data => console.log(data))
-// }
-// jak zrobić return z tego ?
 
 export const getToken = async () => {
   try {

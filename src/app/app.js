@@ -56,10 +56,6 @@ export const startApp = async (id, name) => {
     'game__button--start-quiz',
   )[0];
 
-  // TODO add chooseCategory function here
-  // const categoryId = chooseCategory();
-  // until chooseCategory is finished use id
-  console.log(id);
   const questionList = await getQuestions(categoryID, token, questionCountForLevel);
   let errorText;
 

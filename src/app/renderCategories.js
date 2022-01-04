@@ -1,11 +1,7 @@
-import logo from '/src/images/logo.png';
 import { startApp } from './app.js';
 
-// const SELECTED_CATEGORY_IDS = [20, 14, 9, 22, 10, 15, 21, 30, 13, 16];
-//Object with ids and matched svg icons
-
-
   export const renderCategories = (categories, parentSelector) => {
+    //Object with ids and matched svg icons
     const SELECTED_CATEGORY_IDS = [
       {
         id: 20,
@@ -105,7 +101,6 @@ import { startApp } from './app.js';
   
     parent.innerHTML = tiles.join('');
   
-    //temporary solution
     document.querySelectorAll('.category__card').forEach((card) => {
       card.addEventListener('click', () =>
         startApp(card.dataset.id, card.dataset.name),
