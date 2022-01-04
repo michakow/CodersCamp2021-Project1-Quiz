@@ -618,8 +618,6 @@ const homepage = (categories)=>{
   `;
     const menuButton = document.querySelector('.navigation__burger');
     const dropdown = document.querySelector('.navigation__dropdown');
-    console.log(menuButton);
-    console.log(dropdown);
     menuButton.addEventListener('click', ()=>{
         dropdown.classList.toggle('active');
     });
